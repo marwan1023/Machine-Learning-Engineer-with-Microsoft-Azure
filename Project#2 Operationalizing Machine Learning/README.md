@@ -50,14 +50,14 @@ A “Service Principal” is a user role with controlled permissions to access s
 New terms
 CI/CD: Continuous Integration and Continuous Delivery platform. Jenkins, CircleCI, and Github Actions are a few examples.
 
-more information in the link :[Authentication](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-setup-authentication)
+more information  in the Reference :[Authentication](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-setup-authentication)
 
 ## Step 2- Automated ML Experiment
 At this point, security is enabled and authentication is completed. In this step, you will create an experiment using Automated ML, configure a compute cluster, and use that cluster to run the experiment.
 I will use the same Bankmarketing dataset with course 1.
 ### How AutoML works
 During training, Azure Machine Learning creates a number of pipelines in parallel that try different algorithms and parameters for you. The service iterates through ML algorithms paired with feature selections, where each iteration produces a model with a training score. The higher the score, the better the model is considered to "fit" your data. It will stop once it hits the exit criteria defined in the experiment.
- more information in the link :[automated-ml](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml)
+ more information  in the Reference :[automated-ml](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml)
 
 ###  Configure deployment settings
  - Create a new Automated ML run
@@ -67,7 +67,7 @@ During training, Azure Machine Learning creates a number of pipelines in paralle
  For experiment workloads with high scalability requirements, you can use Azure Machine Learning compute clusters; which are multi-node clusters of Virtual Machines that  automatically scale up or down to meet demand. This is a cost-effective way to run experiments that need to handle large volumes of data or use parallel processing to distribute the workload and reduce the time it takes to run.
  
  - Once the new compute cluster is successfully created, use this cluster to run the autoML experiment
-       more information in the link :[compute-target](https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-target)
+       more information  in the Reference :[compute-target](https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-target)
     
  - You will see the experiment in the experiment section and a new model is created.
  
@@ -89,7 +89,7 @@ Deploying the Best Model will allow to interact with the HTTP API service and in
 Application Insights is an Azure service that helps you to monitor the performance and behavior of web applications.
 It mostly captures two kinds of data: events and metrics. Events are individual data points that can represent any kind of event that occurs in an app. These events can be technical events that occur within the application runtime or those that are related to the business domain of the application or actions taken by users. Metrics are measurements of values, typically taken at regular intervals, that aren't tied to specific events. Like events, metrics can be related to the application's runtime or infrastructure (like the length of a queue) or related to the application's business domain or users (like how many videos are viewed in an hour).
 
- more information in the link 
+ more information  in the Reference
  [Enable-application-insights](https://docs.microsoft.com/en-us/learn/modules/capture-page-load-times-application-insights/2-enable-application-insights)
  [Enable-application-insights](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-enable-app-insights)
  
@@ -117,7 +117,7 @@ It mostly captures two kinds of data: events and metrics. Events are individual 
  
 ## Step 6: Consume Model Endpoints
 
-Once the model is deployed, use the endpoint.py script provided to interact with the trained model. In this step, you need to run the script, modifying both the scoring_uri and the key to match the key for your service and the URI that was generated after deployment.["How to consume a web service"](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-consume-web-service?tabs=python)
+Once the model is deployed, use the endpoint.py script provided to interact with the trained model. In this step, you need to run the script, modifying both the scoring_uri and the key to match the key for your service and the URI that was generated after deployment. in the Reference ["How to consume a web service"](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-consume-web-service?tabs=python)
 
 - n Azure ML Studio, head over to the "Endpoints" section and find a previously deployed model. The compute type should be ACI (Azure Container Instance).
 
@@ -131,7 +131,41 @@ Once the model is deployed, use the endpoint.py script provided to interact with
 
  ab -n 10 -v 4 -p data.json -T 'application/json' -H 'Authorization: Bearer SECRET' http://URL.azurecontainer.io/score 
 
+## Step 7: Create, Publish and Consume a Pipeline
 
+ Automation is a core pillar of DevOps applicable to Machine Learning operations.
+
+A good feature of Azure is Pipelines, and these are closely related to automation. Some key factors covered about pipelines are:
+#### Creating a pipeline 
+
+When creating a Pipeline. Pipelines can take configuration and different steps and there are areas you can play with when creating a pipeline 
+ - Batch inference: The process of doing predictions using parallelism. In a pipeline, it will usually be on a recurring schedule
+ - Recurring schedule: A way to schedule pipelines to run at a given interval
+ - Pipeline parameters: Like variables in a Python script, these can be passed into a script argument
+  
+#### Publishing a pipeline
+
+Publishing a pipeline is the process of making a pipeline publicly available. You can publish pipelines in Azure Machine Learning Studio, but you can also do this with the Python SDK.
+
+When a Pipeline is published, a public HTTP endpoint becomes available, allowing other services, including external ones, to interact with an Azure Pipeline.
+
+##### Automation with pipelines
+Pipelines are all about Automation. Automation connects different services and actions together to be part of a new workflow that wasn’t possible before.
+
+There are some good examples of how different services can communicate to the pipeline endpoint to enable automation.
+
+- A hosted project using version control: when a new change gets merged, a trigger is created to send an HTTP request to the endpoint and train the model.
+- A newer dataset gets uploaded to a storage system that triggers an HTTP request to the endpoint to re-train the model.
+- Several teams that want to use AutoML with datasets that are hosted externally can configure the external cloud provider to trigger an HTTP request when a new dataset gets saved.
+- A CI /CD platform like Jenkins, with a job that submits an HTTP request to Azure when it completes without error.
+#### Consume Pipeline Endpoint (API)
+Pipeline endpoints can be consumed via HTTP, but it is also possible to do so via the Python SDK. Since there are different ways to interact with published Pipelines, this makes the whole pipeline environment very flexible.
+
+It is key to find and use the correct HTTP endpoint to interact with a published pipeline. Sending a request over HTTP to a pipeline endpoint will require authentication in the request headers.
+
+Interacting with a pipeline via an HTTP API endpoint more information in the Reference ["What are Machine Learning Pipelines"](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-your-first-pipeline)
+
+Use a Parallel Run Step in a pipeline. Reference: ["How to use parallel run stepin a pipeline"](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-parallel-run-step)
 
 ## Standout Suggestions
 *TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
