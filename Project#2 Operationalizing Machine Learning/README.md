@@ -57,7 +57,7 @@ At this point, security is enabled and authentication is completed. In this step
 I will use the same Bankmarketing dataset with course 1.
 ### How AutoML works
 During training, Azure Machine Learning creates a number of pipelines in parallel that try different algorithms and parameters for you. The service iterates through ML algorithms paired with feature selections, where each iteration produces a model with a training score. The higher the score, the better the model is considered to "fit" your data. It will stop once it hits the exit criteria defined in the experiment.
- more information  in the Reference :[automated-ml](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml)
+ more information  in the Reference :[automated-ml](https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-first-experiment-automated-ml)
 
 ###  Configure deployment settings
  - Create a new Automated ML run
