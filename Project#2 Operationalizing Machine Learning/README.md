@@ -1,6 +1,6 @@
-## Machine-Learning-Engineer-with-Microsoft-Azure
+### Machine-Learning-Engineer-with-Microsoft-Azure
   
-Table of Contents
+## Table of Contents
 =================
   * [Workspace](#workspace)
   * [Overview](#overview)
@@ -10,7 +10,7 @@ Table of Contents
       - [Registered Dataset](#registered-dataset)
       - [Completed Experiment](#completed-experiment)
     + [Deploy the Best Model](#deploy-the-best-model)
-    + [Enable Application Insights](#application-insights-enabled)
+    + [Enable Application Insights](#enable-Application-insights)
       - [Logging Enabled](#logging-enabled)
     + [Swagger Documentation](#swagger-documentation)
       - [Swagger UI](#swagger-ui)
@@ -121,7 +121,6 @@ Deploying the Best Model will allow to interact with the HTTP API service and in
 - Deployment takes a few seconds. After a successful deployment, a green checkmark will appear on the "Run" tab and the "Deploy status" will show as succeed.
 
 ## Enable Application Insights
-
 Application Insights is an Azure service that helps you to monitor the performance and behavior of web applications.
 It mostly captures two kinds of data: events and metrics. Events are individual data points that can represent any kind of event that occurs in an app. These events can be technical events that occur within the application runtime or those that are related to the business domain of the application or actions taken by users. Metrics are measurements of values, typically taken at regular intervals, that aren't tied to specific events. Like events, metrics can be related to the application's runtime or infrastructure (like the length of a queue) or related to the application's business domain or users (like how many videos are viewed in an hour).
 
