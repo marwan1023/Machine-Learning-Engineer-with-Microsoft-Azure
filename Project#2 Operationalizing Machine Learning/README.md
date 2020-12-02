@@ -1,36 +1,36 @@
 # Machine-Learning-Engineer-with-Microsoft-Azure
+  
+# Operationalizing Machine Learning
+
+Table of Contents
+=================
   * [Workspace](#workspace)
+  * [Overview](#overview)
+  
   * [Overview](#overview)
   * [Architecture](#architecture)
   * [Project Steps](#project-steps)
-    + [Dataset](#dataset)
-    + [Access](#access)
-    + [AutoML Model](#automl-model)
-      - [Pipeline](#pipeline)
-      - [AutoML Config](#automl-config)
-      - [RunDetails](#rundetails)
+    + [Automated ML Experiment](#automated-ml-experiment)
+      - [Registered Dataset](#registered-dataset)
+      - [Completed Experiment](#completed-experiment)
       - [Best Model](#best-model)
-      - [Save and Register Model](#save-and-register-model)
-    + [Hyperdrive Model](#hyperdrive-model)
-      - [Pipeline](#pipeline-1)
-      - [HyperDrive config](#hyperdrive-config)
-      - [RunDetails](#rundetails-1)
-      - [Best Model](#best-model-1)
-      - [Saving Model](#saving-model)
-    + [Comparison of the two models](#comparison-of-the-two-models)
     + [Model Deployment](#model-deployment)
-      - [Register Model](#register-model)
-      - [Deploy Model](#deploy-model)
-      - [Consume Model Endpoint](#consume-model-endpoint)
-      - [Services cleanup](#services-cleanup)
-    + [Standout Suggestions](#standout-suggestions)
-      - [Convert model into ONNX format](#convert-model-into-onnx-format)
-      - [Deploy model using IoT Edge](#deploy-model-using-iot-edge)
-      - [Enable Logging](#enable-logging)
-      - [Publish and Consume Pipeline](#publish-and-consume-pipeline)
+    + [Enable Logging](#enable-logging)
+      - [Application Insights Enabled](#application-insights-enabled)
+      - [Logging Enabled](#logging-enabled)
+    + [Swagger Documentation](#swagger-documentation)
+      - [Swagger UI](#swagger-ui)
+    + [Consume Model Endpoint](#consume-model-endpoint)
+      - [Endpoint Result](#endpoint-result)
+      - [Apache Bechmark](#apache-bechmark)
+    + [Create and Publish a Pipeline](#create-and-publish-a-pipeline)
+      - [Create Pipeline](#create-pipeline)
+      - [Bankmarketing dataset with AutoML Module](#bankmarketing-dataset-with-automl-module)
+      - [Use RunDetails Widget](#use-rundetails-widget)
+      - [Published Pipeline Overview](#published-pipeline-overview)
+      - [Scheduled run in ML Studio](#scheduled-run-in-ml-studio)
   * [Future Improvements](#future-improvements)
-  * [Screen Recording](#screen-recording)
-
+  * [Screencast Video](#screencast-video)
 
 
 
@@ -42,11 +42,11 @@ A taxonomy of the workspace is illustrated in the following diagram:
 ![taxonomy](./Screenshots/azure-machine-learning-taxonomy.png)
 
 ## Overview
-## Project#2 Operationalizing Machine Learning
+### Project#2 Operationalizing Machine Learning
 
 In this project, I will continue to work with the Bank Marketing dataset. You will use Azure to configure a cloud-based machine learning production model, deploy it, and consume it. You will also create, publish, and consume a pipeline.
 
-## Architectural Diagram and main steps
+### Architectural Diagram and main steps
 In this project, you will following the below steps:
 
 - Authentication
@@ -58,9 +58,9 @@ In this project, you will following the below steps:
 - Create and publish a pipeline
 - Documentation
 
-# Architectural Diagram 
+### Architectural Diagram 
 
-![Architectural Diagram](/Screenshots/screen-shot-2020.png)
+![Architectural Diagram](./Screenshots/screen-shot-2020.png)
 
 Both the Azure ML Studio and the Python SDK will be used in this project. You will start with authentication and then run an Automated ML experiment to deploy the best model.
 
@@ -69,8 +69,9 @@ Next, you will enable Application Insight to review important information about 
 And finally, you will create, publish, and interact with a pipeline.
 
  DevOps: A set of best practices that helps provide continuous delivery of software at the highest quality with a constant feedback loop.
+# Project Steps
 
-## Step 1 - Authentication
+## Authentication
 Authentication is crucial for the continuous flow of operations. Continuous Integration and Delivery system (CI/CD) rely on uninterrupted flows. When authentication is not set properly, it requires human interaction and thus, the flow is interrupted. An ideal scenario is that the system doesn't stop waiting for a user to input a password. So whenever possible, it's good to use authentication with automation.
 ### Authentication types
 ### Key- based
@@ -88,7 +89,7 @@ CI/CD: Continuous Integration and Continuous Delivery platform. Jenkins, CircleC
 
 more information  in the Reference :[Authentication](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-setup-authentication)
 
-## Step 2- Automated ML Experiment
+## Automated ML Experiment
 At this point, security is enabled and authentication is completed. In this step, you will create an experiment using Automated ML, configure a compute cluster, and use that cluster to run the experiment.
 I will use the same Bankmarketing dataset with course 1.
 ### How AutoML works
@@ -107,7 +108,7 @@ During training, Azure Machine Learning creates a number of pipelines in paralle
     
  - You will see the experiment in the experiment section and a new model is created.
  
- ## Step 3: Deploy the Best Model
+ ## Deploy the Best Model
  After the experiment run completes, a summary of all the models and their metrics are shown, including explanations. The Best Model will be shown in the Details tab. In the   Models tab, it will come up first (at the top). Make sure you select the best model for deployment.
 
 Deploying the Best Model will allow to interact with the HTTP API service and interact with the model by sending data over POST requests.
@@ -121,7 +122,7 @@ Deploying the Best Model will allow to interact with the HTTP API service and in
    3) Do not change anything in the Advanced section.
 - Deployment takes a few seconds. After a successful deployment, a green checkmark will appear on the "Run" tab and the "Deploy status" will show as succeed.
 
-## Step 4: Enable Application Insights
+## Enable Application Insights
 Application Insights is an Azure service that helps you to monitor the performance and behavior of web applications.
 It mostly captures two kinds of data: events and metrics. Events are individual data points that can represent any kind of event that occurs in an app. These events can be technical events that occur within the application runtime or those that are related to the business domain of the application or actions taken by users. Metrics are measurements of values, typically taken at regular intervals, that aren't tied to specific events. Like events, metrics can be related to the application's runtime or infrastructure (like the length of a queue) or related to the application's business domain or users (like how many videos are viewed in an hour).
 
