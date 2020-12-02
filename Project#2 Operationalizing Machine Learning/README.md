@@ -1,5 +1,5 @@
 # Machine-Learning-Engineer-with-Microsoft-Azure
-  * [Workspace](#workspace]
+  * [Workspace](#workspace)
   * [Overview](#overview)
   * [Architecture](#architecture)
   * [Project Steps](#project-steps)
@@ -34,13 +34,14 @@
 
 
 
-### Workspace
+## Workspace
 A machine learning workspace is the top-level resource for Azure Machine Learning.
-![architecture](https://github.com/marwan1023/Machine-Learning-Engineer-with-Microsoft-Azure/blob/master/Project%232%20Operationalizing%20Machine%20Learning/Screenshots/architecture.PNG)
+![architecture](./Screenshots/architecture.PNG)
 
 A taxonomy of the workspace is illustrated in the following diagram:
-![taxonomy](https://github.com/marwan1023/Machine-Learning-Engineer-with-Microsoft-Azure/blob/master/Project%232%20Operationalizing%20Machine%20Learning/Screenshots/azure-machine-learning-taxonomy.png)
+![taxonomy](./Screenshots/azure-machine-learning-taxonomy.png)
 
+## Overview
 ## Project#2 Operationalizing Machine Learning
 
 In this project, I will continue to work with the Bank Marketing dataset. You will use Azure to configure a cloud-based machine learning production model, deploy it, and consume it. You will also create, publish, and consume a pipeline.
@@ -59,7 +60,7 @@ In this project, you will following the below steps:
 
 # Architectural Diagram 
 
-![Architectural Diagram](https://github.com/marwan1023/Machine-Learning-Engineer-with-Microsoft-Azure/blob/master/Project%232%20Operationalizing%20Machine%20Learning/Screenshots/screen-shot-2020.png)
+![Architectural Diagram](/Screenshots/screen-shot-2020.png)
 
 Both the Azure ML Studio and the Python SDK will be used in this project. You will start with authentication and then run an Automated ML experiment to deploy the best model.
 
