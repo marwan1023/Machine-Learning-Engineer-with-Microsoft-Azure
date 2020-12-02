@@ -1,29 +1,25 @@
-# Machine-Learning-Engineer-with-Microsoft-Azure
+## Machine-Learning-Engineer-with-Microsoft-Azure
   
-# Operationalizing Machine Learning
+## Operationalizing Machine Learning
 
 Table of Contents
 =================
   * [Workspace](#workspace)
-  * [Overview](#overview)
-  
   * [Overview](#overview)
   * [Architecture](#architecture)
   * [Project Steps](#project-steps)
     + [Automated ML Experiment](#automated-ml-experiment)
       - [Registered Dataset](#registered-dataset)
       - [Completed Experiment](#completed-experiment)
-      - [Best Model](#best-model)
-    + [Model Deployment](#model-deployment)
-    + [Enable Logging](#enable-logging)
-      - [Application Insights Enabled](#application-insights-enabled)
+    + [Deploy the Best Model](#model-deployment)
+    + [Application Insights Enabled](#application-insights-enabled)
       - [Logging Enabled](#logging-enabled)
     + [Swagger Documentation](#swagger-documentation)
       - [Swagger UI](#swagger-ui)
     + [Consume Model Endpoint](#consume-model-endpoint)
       - [Endpoint Result](#endpoint-result)
       - [Apache Bechmark](#apache-bechmark)
-    + [Create and Publish a Pipeline](#create-and-publish-a-pipeline)
+    + [Create, Publish and Consume a Pipeline](#create-and-publish-a-pipeline)
       - [Create Pipeline](#create-pipeline)
       - [Bankmarketing dataset with AutoML Module](#bankmarketing-dataset-with-automl-module)
       - [Use RunDetails Widget](#use-rundetails-widget)
@@ -96,7 +92,7 @@ I will use the same Bankmarketing dataset with course 1.
 During training, Azure Machine Learning creates a number of pipelines in parallel that try different algorithms and parameters for you. The service iterates through ML algorithms paired with feature selections, where each iteration produces a model with a training score. The higher the score, the better the model is considered to "fit" your data. It will stop once it hits the exit criteria defined in the experiment.
  more information  in the Reference :[automated-ml](https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-first-experiment-automated-ml)
 
-###  Configure deployment settings
+###  Registered Dataset
  - Create a new Automated ML run
  - Next, make sure you have the dataset uploaded  Copy the link to a new browser window to download the data:  https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv
    Upload the bankmarketing_train.csv to Azure Machine Learning Studio so that it can be used when training the model.
@@ -108,11 +104,11 @@ During training, Azure Machine Learning creates a number of pipelines in paralle
     
  - You will see the experiment in the experiment section and a new model is created.
  
- ## Deploy the Best Model
+ ## Completed Experiment
  After the experiment run completes, a summary of all the models and their metrics are shown, including explanations. The Best Model will be shown in the Details tab. In the   Models tab, it will come up first (at the top). Make sure you select the best model for deployment.
 
 Deploying the Best Model will allow to interact with the HTTP API service and interact with the model by sending data over POST requests.
-
+## Deploy the Best Model
 - Go to the Automated ML section and find the recent experiment with a completed status. Click on it.
 - Go to the "Model" tab and select a model from the list and click it. Above it, a triangle button (or Play button) will show with the "Deploy" word. Click on it.
    1) Fill out the form with a meaningful name and description. For Compute Type use Azure Container Instance (ACI)
@@ -130,7 +126,7 @@ It mostly captures two kinds of data: events and metrics. Events are individual 
  [Enable-application-insights](https://docs.microsoft.com/en-us/learn/modules/capture-page-load-times-application-insights/2-enable-application-insights)
  [Enable-application-insights](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-enable-app-insights)
  
- ## Step: Swagger Documentation
+ ## Swagger Documentation
  In this step, you will consume the deployed model using Swagger.
 
   Azure provides a Swagger JSON file for deployed models. Head to the Endpoints section, and find your deployed model there, it should be the first one on the list.
@@ -152,23 +148,24 @@ It mostly captures two kinds of data: events and metrics. Events are individual 
 - On the top bar, where petsore.swagger.io shows, change it to http://localhost:8000/swagger.json, then hit the Explore button. It should now display the contents of the API for the model
  - Look around at the different HTTP requests that are supported for the model
  
-## Step 6: Consume Model Endpoints
+## Consume Model Endpoints
 
 Once the model is deployed, use the endpoint.py script provided to interact with the trained model. In this step, you need to run the script, modifying both the scoring_uri and the key to match the key for your service and the URI that was generated after deployment. in the Reference ["How to consume a web service"](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-consume-web-service?tabs=python)
-
+ ### Endpoint Result
+ 
 - In Azure ML Studio, head over to the "Endpoints" section and find a previously deployed model. The compute type should be ACI (Azure Container Instance).
 
 - In the "Consume" tab, of the endpoint, a "Basic consumption info" will show the endpoint URL and the authentication types. Take note of the URL and the "Primary Key" authentication type.
 - Using the provided endpoint.py replace the scoring_uri and key to match the REST endpoint and primary key respectively. The script issues a POST request to the deployed model and gets a JSON response that gets printed to the terminal.
 
-### Benchmark the Endpoint
+### Apache Bechmark
 - Make sure you have the Apache Benchmark command-line tool installed and available in your path:
 - Run the endpoint.py. Just like before, it is important to use the right URI and Key to communicate with the deployed endpoint. A data.json should be present. This is required for the next step where the JSON file is used to HTTP POST to the endpoint.
 - In the provided started code, there is a benchmark.sh script with a call to ab similar to this:
 
  ab -n 10 -v 4 -p data.json -T 'application/json' -H 'Authorization: Bearer SECRET' http://URL.azurecontainer.io/score 
 
-## Step 7: Create, Publish and Consume a Pipeline
+##  Create, Publish and Consume a Pipeline
 
  Automation is a core pillar of DevOps applicable to Machine Learning operations.
 
