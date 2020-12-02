@@ -1,4 +1,39 @@
 # Machine-Learning-Engineer-with-Microsoft-Azure
+  * [Workspace](#workspace]
+  * [Overview](#overview)
+  * [Architecture](#architecture)
+  * [Project Steps](#project-steps)
+    + [Dataset](#dataset)
+    + [Access](#access)
+    + [AutoML Model](#automl-model)
+      - [Pipeline](#pipeline)
+      - [AutoML Config](#automl-config)
+      - [RunDetails](#rundetails)
+      - [Best Model](#best-model)
+      - [Save and Register Model](#save-and-register-model)
+    + [Hyperdrive Model](#hyperdrive-model)
+      - [Pipeline](#pipeline-1)
+      - [HyperDrive config](#hyperdrive-config)
+      - [RunDetails](#rundetails-1)
+      - [Best Model](#best-model-1)
+      - [Saving Model](#saving-model)
+    + [Comparison of the two models](#comparison-of-the-two-models)
+    + [Model Deployment](#model-deployment)
+      - [Register Model](#register-model)
+      - [Deploy Model](#deploy-model)
+      - [Consume Model Endpoint](#consume-model-endpoint)
+      - [Services cleanup](#services-cleanup)
+    + [Standout Suggestions](#standout-suggestions)
+      - [Convert model into ONNX format](#convert-model-into-onnx-format)
+      - [Deploy model using IoT Edge](#deploy-model-using-iot-edge)
+      - [Enable Logging](#enable-logging)
+      - [Publish and Consume Pipeline](#publish-and-consume-pipeline)
+  * [Future Improvements](#future-improvements)
+  * [Screen Recording](#screen-recording)
+
+
+
+
 ### Workspace
 A machine learning workspace is the top-level resource for Azure Machine Learning.
 ![architecture](https://github.com/marwan1023/Machine-Learning-Engineer-with-Microsoft-Azure/blob/master/Project%232%20Operationalizing%20Machine%20Learning/Screenshots/architecture.PNG)
