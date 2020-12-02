@@ -92,13 +92,13 @@ During training, Azure Machine Learning creates a number of pipelines in paralle
 ###  Registered Dataset
 
  - Create a new Automated ML run
- - Next, make sure you have the dataset uploaded  Copy the link to a new browser window to download the data:  https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv
+ - Next, make sure you have the dataset uploaded  Copy the link to a new browser window to download the data: https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv
    Upload the bankmarketing_train.csv to Azure Machine Learning Studio so that it can be used when training the model.
  - Create and configure your new compute cluster.
  For experiment workloads with high scalability requirements, you can use Azure Machine Learning compute clusters; which are multi-node clusters of Virtual Machines that  automatically scale up or down to meet demand. This is a cost-effective way to run experiments that need to handle large volumes of data or use parallel processing to distribute the workload and reduce the time it takes to run.
  
- - Once the new compute cluster is successfully created, use this cluster to run the autoML experiment
-       more information  in the Reference :[compute-target](https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-target)
+ - Once the new compute cluster is successfully created, use this cluster to run the autoML experiment 
+                 more information in the Reference :[compute-target](https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-target)
     
  - You will see the experiment in the experiment section and a new model is created.
  
