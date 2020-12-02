@@ -3,8 +3,9 @@
 ### Table of Contents
   * [Workspace](#workspace)
   * [Overview](#overview)
-  * [Architecture](#architecture)
+  * [Architectural Diagram and main steps](#architectural-diagram-and-main-steps)
   * [Project Steps](#project-steps)
+    + [Authentication](#authentication)
     + [Automated ML Experiment](#automated-ml-experiment)
       - [Registered Dataset](#registered-dataset)
       - [Completed Experiment](#completed-experiment)
