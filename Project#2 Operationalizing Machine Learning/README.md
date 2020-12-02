@@ -112,11 +112,9 @@ Deploying the Best Model will allow to interact with the HTTP API service and in
 
 - Go to the Automated ML section and find the recent experiment with a completed status. Click on it.
 - Go to the "Model" tab and select a model from the list and click it. Above it, a triangle button (or Play button) will show with the "Deploy" word. Click on it.
-   1) Fill out the form with a meaningful name and description. For Compute Type use Azure Container Instance (ACI)
-
-   2) Enable Authentication
-
-   3) Do not change anything in the Advanced section.
+    * Fill out the form with a meaningful name and description. For Compute Type use Azure Container Instance (ACI)
+    * Enable Authentication
+    * Do not change anything in the Advanced section.
 - Deployment takes a few seconds. After a successful deployment, a green checkmark will appear on the "Run" tab and the "Deploy status" will show as succeed.
 
 ## Enable Application Insights
