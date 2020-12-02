@@ -10,7 +10,7 @@ Table of Contents
       - [Registered Dataset](#registered-dataset)
       - [Completed Experiment](#completed-experiment)
     + [Deploy the Best Model](#deploy-the-best-model)
-    + [Application Insights Enabled](#application-insights-enabled)
+    + [Enable Application Insights](#application-insights-enabled)
       - [Logging Enabled](#logging-enabled)
     + [Swagger Documentation](#swagger-documentation)
       - [Swagger UI](#swagger-ui)
