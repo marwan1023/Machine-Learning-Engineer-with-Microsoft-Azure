@@ -1,7 +1,6 @@
 ### Machine-Learning-Engineer-with-Microsoft-Azure
-  
-## Table of Contents
-=================
+  ### Project#2 Operationalizing Machine Learning
+### Table of Contents
   * [Workspace](#workspace)
   * [Overview](#overview)
   * [Architecture](#architecture)
@@ -36,7 +35,6 @@ A taxonomy of the workspace is illustrated in the following diagram:
 ![taxonomy](./Screenshots/azure-machine-learning-taxonomy.png)
 
 ## Overview
-### Project#2 Operationalizing Machine Learning
 
 In this project, I will continue to work with the Bank Marketing dataset. You will use Azure to configure a cloud-based machine learning production model, deploy it, and consume it. You will also create, publish, and consume a pipeline.
 
@@ -63,7 +61,7 @@ Next, you will enable Application Insight to review important information about 
 And finally, you will create, publish, and interact with a pipeline.
 
  DevOps: A set of best practices that helps provide continuous delivery of software at the highest quality with a constant feedback loop.
-# Project Steps
+## Project Steps
 
 ## Authentication
 Authentication is crucial for the continuous flow of operations. Continuous Integration and Delivery system (CI/CD) rely on uninterrupted flows. When authentication is not set properly, it requires human interaction and thus, the flow is interrupted. An ideal scenario is that the system doesn't stop waiting for a user to input a password. So whenever possible, it's good to use authentication with automation.
