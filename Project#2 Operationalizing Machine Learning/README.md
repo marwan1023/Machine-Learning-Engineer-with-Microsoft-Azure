@@ -56,6 +56,9 @@ In this project, you will following the below steps:
 - Documentation
 
 ### Architectural Diagram 
+This dataset contains data about direct marketing campaigns of a banking institution. The marketing campaigns were based on phone calls. So we seek to predict if the product (bank term deposit) would be ('yes') or not ('no') subscribed.
+
+First I executed an AutoML experiment using the Azure ML platform for training several kinds of models such as LightGBM, XGBoost, Logistic Regression, VotingEnsemble, among others algorithms. After we got the best model, I deployed it and I got the REST endpoint. I enabled logging through Application Insights service. Also we covered the Swagger documentation in order to get information of the REST endpoint. Then we saw how to consume the endpoint using the HTTP API and the authentication. Finally I created and published a pipeline using the Python SDK and I got the REST endpoint of the pipeline and with that we consumed the endpoint in order to execute the pipeline. All these steps we can see in the following architecture:
 
 ![Architectural Diagram](./Screenshots/screen-shot-2020.png)
 
