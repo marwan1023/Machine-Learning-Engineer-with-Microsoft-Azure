@@ -1,7 +1,5 @@
 ## Machine-Learning-Engineer-with-Microsoft-Azure
   
-## Operationalizing Machine Learning
-
 Table of Contents
 =================
   * [Workspace](#workspace)
@@ -19,14 +17,14 @@ Table of Contents
     + [Consume Model Endpoint](#consume-model-endpoint)
       - [Endpoint Result](#endpoint-result)
       - [Apache Bechmark](#apache-bechmark)
-    + [Create, Publish and Consume a Pipeline](#create-and-publish-a-pipeline)
+    + [Create Publish and Consume a Pipeline](#create-Publish-and-Consume-a-Pipeline)
       - [Create Pipeline](#create-pipeline)
       - [Bankmarketing dataset with AutoML Module](#bankmarketing-dataset-with-automl-module)
       - [Use RunDetails Widget](#use-rundetails-widget)
-      - [Published Pipeline Overview](#published-pipeline-overview)
+      - [Published Pipeline](#published-pipeline-overview)
       - [Scheduled run in ML Studio](#scheduled-run-in-ml-studio)
-  * [Future Improvements](#future-improvements)
-  * [Screencast Video](#screencast-video)
+      - [Automation with pipelines](#automation-with-pipelines)
+   * [Screencast Video](#screencast-video)
 
 
 
@@ -93,6 +91,7 @@ During training, Azure Machine Learning creates a number of pipelines in paralle
  more information  in the Reference :[automated-ml](https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-first-experiment-automated-ml)
 
 ###  Registered Dataset
+
  - Create a new Automated ML run
  - Next, make sure you have the dataset uploaded  Copy the link to a new browser window to download the data:  https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv
    Upload the bankmarketing_train.csv to Azure Machine Learning Studio so that it can be used when training the model.
@@ -105,10 +104,13 @@ During training, Azure Machine Learning creates a number of pipelines in paralle
  - You will see the experiment in the experiment section and a new model is created.
  
  ## Completed Experiment
+ 
  After the experiment run completes, a summary of all the models and their metrics are shown, including explanations. The Best Model will be shown in the Details tab. In the   Models tab, it will come up first (at the top). Make sure you select the best model for deployment.
 
 Deploying the Best Model will allow to interact with the HTTP API service and interact with the model by sending data over POST requests.
+
 ## Deploy the Best Model
+
 - Go to the Automated ML section and find the recent experiment with a completed status. Click on it.
 - Go to the "Model" tab and select a model from the list and click it. Above it, a triangle button (or Play button) will show with the "Deploy" word. Click on it.
    1) Fill out the form with a meaningful name and description. For Compute Type use Azure Container Instance (ACI)
@@ -119,6 +121,7 @@ Deploying the Best Model will allow to interact with the HTTP API service and in
 - Deployment takes a few seconds. After a successful deployment, a green checkmark will appear on the "Run" tab and the "Deploy status" will show as succeed.
 
 ## Enable Application Insights
+
 Application Insights is an Azure service that helps you to monitor the performance and behavior of web applications.
 It mostly captures two kinds of data: events and metrics. Events are individual data points that can represent any kind of event that occurs in an app. These events can be technical events that occur within the application runtime or those that are related to the business domain of the application or actions taken by users. Metrics are measurements of values, typically taken at regular intervals, that aren't tied to specific events. Like events, metrics can be related to the application's runtime or infrastructure (like the length of a queue) or related to the application's business domain or users (like how many videos are viewed in an hour).
 
@@ -127,6 +130,7 @@ It mostly captures two kinds of data: events and metrics. Events are individual 
  [Enable-application-insights](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-enable-app-insights)
  
  ## Swagger Documentation
+ 
  In this step, you will consume the deployed model using Swagger.
 
   Azure provides a Swagger JSON file for deployed models. Head to the Endpoints section, and find your deployed model there, it should be the first one on the list.
@@ -143,14 +147,15 @@ It mostly captures two kinds of data: events and metrics. Events are individual 
 
   2-swagger.sh which will download the latest Swagger container, and it will run it on port 80. If you don't have permissions for port 80 on your computer, update the script to a higher number (above 9000 is a good idea).
 
-- Open the browser and go to http://localhost:8000 where serve.py should list the contents of the directory. swagger.json must show. If it doesn't, it needs to be downloaded from the deployed model endpoint.
-- Go to http://localhost/ which should have Swagger running from the container (as defined in swagger.sh). If you changed the port number, use that new port number to reach the local Swagger service (for example, http://localhost:9000 if port 9000 is used).
-- On the top bar, where petsore.swagger.io shows, change it to http://localhost:8000/swagger.json, then hit the Explore button. It should now display the contents of the API for the model
- - Look around at the different HTTP requests that are supported for the model
+ - Open the browser and go to http://localhost:8000 where serve.py should list the contents of the directory. swagger.json must show. If it doesn't, it needs to be downloaded from the deployed model endpoint.
+ - Go to http://localhost/ which should have Swagger running from the container (as defined in swagger.sh). If you changed the port number, use that new port number to reach the local Swagger service (for example, http://localhost:9000 if port 9000 is used).
+ - On the top bar, where petsore.swagger.io shows, change it to http://localhost:8000/swagger.json, then hit the Explore button. It should now display the contents of the API for the model
+  - Look around at the different HTTP requests that are supported for the model
  
 ## Consume Model Endpoints
 
 Once the model is deployed, use the endpoint.py script provided to interact with the trained model. In this step, you need to run the script, modifying both the scoring_uri and the key to match the key for your service and the URI that was generated after deployment. in the Reference ["How to consume a web service"](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-consume-web-service?tabs=python)
+
  ### Endpoint Result
  
 - In Azure ML Studio, head over to the "Endpoints" section and find a previously deployed model. The compute type should be ACI (Azure Container Instance).
@@ -165,25 +170,32 @@ Once the model is deployed, use the endpoint.py script provided to interact with
 
  ab -n 10 -v 4 -p data.json -T 'application/json' -H 'Authorization: Bearer SECRET' http://URL.azurecontainer.io/score 
 
-##  Create, Publish and Consume a Pipeline
+##  Create Publish and Consume a Pipeline
+ For this part we used the Jupyter Notebook provided. In the notebook, firts we initialized the workspace, we specified the Azure ML experiment, attached the computed cluster, we loaded the Bank marketing dataset, we configured the AutoML using the AutoMLConfig class. We also used th AutoMLStep class to specify the steps of the pipeline. Then we created the pipeline and submitted the experiment. Once the experiment is completed, we can see the diagram of the pipeline in the Azure ML studio. We can see the pipeline first has the bankmarketing dataset module followed by the AutoML module.
+ 
+#### Create Pipeline 
 
  Automation is a core pillar of DevOps applicable to Machine Learning operations.
 
 A good feature of Azure is Pipelines, and these are closely related to automation. Some key factors covered about pipelines are:
-#### Creating a pipeline 
 
 When creating a Pipeline. Pipelines can take configuration and different steps and there are areas you can play with when creating a pipeline 
  - Batch inference: The process of doing predictions using parallelism. In a pipeline, it will usually be on a recurring schedule
  - Recurring schedule: A way to schedule pipelines to run at a given interval
  - Pipeline parameters: Like variables in a Python script, these can be passed into a script argument
+#### Bankmarketing dataset with AutoML Module
+
+#### Use RunDetails Widget
   
 #### Publishing a pipeline
 
-Publishing a pipeline is the process of making a pipeline publicly available. You can publish pipelines in Azure Machine Learning Studio, but you can also do this with the Python SDK.
+Then we published the pipeline using the publish_pipeline method. It generated the Pipeline endpoint, in this case called "Bank Marketing Train" and in the portal we can see the REST endpoint and its status which is Active.
 
+Publishing a pipeline is the process of making a pipeline publicly available. You can publish pipelines in Azure Machine Learning Studio, but you can also do this with the Python SDK.
 When a Pipeline is published, a public HTTP endpoint becomes available, allowing other services, including external ones, to interact with an Azure Pipeline.
 
 ##### Automation with pipelines
+
 Pipelines are all about Automation. Automation connects different services and actions together to be part of a new workflow that wasn’t possible before.
 
 There are some good examples of how different services can communicate to the pipeline endpoint to enable automation.
@@ -192,7 +204,9 @@ There are some good examples of how different services can communicate to the pi
 - A newer dataset gets uploaded to a storage system that triggers an HTTP request to the endpoint to re-train the model.
 - Several teams that want to use AutoML with datasets that are hosted externally can configure the external cloud provider to trigger an HTTP request when a new dataset gets saved.
 - A CI /CD platform like Jenkins, with a job that submits an HTTP request to Azure when it completes without error.
+
 #### Consume Pipeline Endpoint (API)
+
 Pipeline endpoints can be consumed via HTTP, but it is also possible to do so via the Python SDK. Since there are different ways to interact with published Pipelines, this makes the whole pipeline environment very flexible.
 
 It is key to find and use the correct HTTP endpoint to interact with a published pipeline. Sending a request over HTTP to a pipeline endpoint will require authentication in the request headers.
