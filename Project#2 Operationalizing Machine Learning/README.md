@@ -9,7 +9,7 @@ Table of Contents
     + [Automated ML Experiment](#automated-ml-experiment)
       - [Registered Dataset](#registered-dataset)
       - [Completed Experiment](#completed-experiment)
-    + [Deploy the Best Model](#model-deployment)
+    + [Deploy the Best Model](#deploy-the-best-model)
     + [Application Insights Enabled](#application-insights-enabled)
       - [Logging Enabled](#logging-enabled)
     + [Swagger Documentation](#swagger-documentation)
@@ -103,7 +103,7 @@ During training, Azure Machine Learning creates a number of pipelines in paralle
     
  - You will see the experiment in the experiment section and a new model is created.
  
- ## Completed Experiment
+ ### Completed Experiment
  
  After the experiment run completes, a summary of all the models and their metrics are shown, including explanations. The Best Model will be shown in the Details tab. In the   Models tab, it will come up first (at the top). Make sure you select the best model for deployment.
 
