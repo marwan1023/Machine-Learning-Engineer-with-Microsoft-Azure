@@ -21,7 +21,7 @@
         - [Create Pipeline](#create-pipeline)
         - [Bankmarketing dataset with AutoML Module](#bankmarketing-dataset-with-automl-module)
         - [Use RunDetails Widget](#use-rundetails-widget)
-        - [Publishing a pipeline](#Publishing-a-pipeline)
+        - [Publishing a pipeline](#Publishingpipeline)
         - [Scheduled run in ML Studio](#scheduled-run-in-ml-studio)
         - [Automation with pipelines](#automation-with-pipelines)
    * [Screencast Video](#screencast-video)
@@ -215,7 +215,7 @@ Once the model is deployed, use the endpoint.py script provided to interact with
 ##  Create Publish and Consume a Pipeline
  For this part we used the Jupyter Notebook provided. In the notebook, firts we initialized the workspace, we specified the Azure ML experiment, attached the computed cluster, we loaded the Bank marketing dataset, we configured the AutoML using the AutoMLConfig class. We also used th AutoMLStep class to specify the steps of the pipeline. Then we created the pipeline and submitted the experiment. Once the experiment is completed, we can see the diagram of the pipeline in the Azure ML studio. We can see the pipeline first has the bankmarketing dataset module followed by the AutoML module.
  
-#### Create Pipeline 
+ #### Create Pipeline 
 
  Automation is a core pillar of DevOps applicable to Machine Learning operations.
 
@@ -225,14 +225,16 @@ When creating a Pipeline. Pipelines can take configuration and different steps a
  - Batch inference: The process of doing predictions using parallelism. In a pipeline, it will usually be on a recurring schedule
  - Recurring schedule: A way to schedule pipelines to run at a given interval
  - Pipeline parameters: Like variables in a Python script, these can be passed into a script argument
-#### Bankmarketing dataset with AutoML Module
+ 
+ #### Bankmarketing dataset with AutoML Module
+
  ![Pipeline](./Screenshots/Capture35.PNG)
  ![Pipeline](./Screenshots/Capture23.PNG)
 
-#### Use RunDetails Widget
+ #### Use RunDetails Widget
   ![Pipeline](./Screenshots/Capture36.PNG)
   
-#### Publishing a pipeline
+ #### Publishing a pipeline
 
 Then we published the pipeline using the publish_pipeline method. It generated the Pipeline endpoint, in this case called "Bank Marketing Train" and in the portal we can see the REST endpoint and its status which is Active.
 
@@ -241,7 +243,15 @@ When a Pipeline is published, a public HTTP endpoint becomes available, allowing
 
    ![Pipeline](./Screenshots/Capture25.PNG)
    ![Pipeline](./Screenshots/Capture26.PNG)
-##### Automation with pipelines
+   
+  #### Scheduled run in ML Studio
+   Once we got the Pipeline endpoint we can schedule it in order to run it every 24 hours for example. For this we used the ScheduleRecurrence class from the Azure SDK. Finally    we can consume the Pipeline endpoint using the HTTP via Python SDK. We can see in the following images the results after triggered the pipeline using the published pipeline    REST endpoint. Also at the end of the notebook we can see how to monitor the status of the pipeline run using RunDetails Widget.
+   
+   ![Pipeline](./Screenshots/Capture40.PNG)
+   ![Pipeline](./Screenshots/Capture37.PNG)
+   ![Pipeline](./Screenshots/Capture39.PNG)
+   ![Pipeline](./Screenshots/Capture38.PNG)
+ ##### Automation with pipelines
 
 Pipelines are all about Automation. Automation connects different services and actions together to be part of a new workflow that wasn’t possible before.
 
@@ -265,4 +275,4 @@ Use a Parallel Run Step in a pipeline. Reference: ["How to use parallel run step
 ## Screencast Video
 Finally I recorded a screencast that shows the entire process of the working ML application.
 
-
+https://drive.google.com/file/d/1PPXQamFQGYau8BndC2CarCN0Ohw20ggH/view?usp=sharing
