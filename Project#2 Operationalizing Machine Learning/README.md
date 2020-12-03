@@ -5,25 +5,25 @@
   * [Overview](#overview)
   * [Architectural Diagram and main steps](#architectural-diagram-and-main-steps)
   * [Project Steps](#project-steps)
-    + [Authentication](#authentication)
-    + [Automated ML Experiment](#automated-ml-experiment)
-      - [Registered Dataset](#registered-dataset)
-      - [Completed Experiment](#completed-experiment)
-    + [Deploy the Best Model](#deploy-the-best-model)
-    + [Enable Application Insights](#enable-Application-insights)
-      - [Logging Enabled](#logging-enabled)
-    + [Swagger Documentation](#swagger-documentation)
-      - [Swagger UI](#swagger-ui)
-    + [Consume Model Endpoint](#consume-model-endpoint)
-      - [Endpoint Result](#endpoint-result)
-      - [Apache Bechmark](#apache-bechmark)
-    + [Create Publish and Consume a Pipeline](#create-Publish-and-Consume-a-Pipeline)
-      - [Create Pipeline](#create-pipeline)
-      - [Bankmarketing dataset with AutoML Module](#bankmarketing-dataset-with-automl-module)
-      - [Use RunDetails Widget](#use-rundetails-widget)
-      - [Published Pipeline](#published-pipeline-overview)
-      - [Scheduled run in ML Studio](#scheduled-run-in-ml-studio)
-      - [Automation with pipelines](#automation-with-pipelines)
+      + [Authentication](#authentication)
+      + [Automated ML Experiment](#automated-ml-experiment)
+        - [Registered Dataset](#registered-dataset)
+        - [Completed Experiment](#completed-experiment)
+      + [Deploy the Best Model](#deploy-the-best-model)
+      + [Enable Application Insights](#enable-Application-insights)
+        - [Logging Enabled](#logging-enabled)
+      + [Swagger Documentation](#swagger-documentation)
+        - [Swagger UI](#swagger-ui)
+      + [Consume Model Endpoint](#consume-model-endpoint)
+        - [Endpoint Result](#endpoint-result)
+        - [Apache Bechmark](#apache-bechmark)
+      + [Create Publish and Consume a Pipeline](#create-Publish-and-Consume-a-Pipeline)
+        - [Create Pipeline](#create-pipeline)
+        - [Bankmarketing dataset with AutoML Module](#bankmarketing-dataset-with-automl-module)
+        - [Use RunDetails Widget](#use-rundetails-widget)
+        - [Published Pipeline](#published-pipeline-overview)
+        - [Scheduled run in ML Studio](#scheduled-run-in-ml-studio)
+        - [Automation with pipelines](#automation-with-pipelines)
    * [Screencast Video](#screencast-video)
 
 
@@ -89,23 +89,36 @@ I will use the same Bankmarketing dataset with course 1.
 During training, Azure Machine Learning creates a number of pipelines in parallel that try different algorithms and parameters for you. The service iterates through ML algorithms paired with feature selections, where each iteration produces a model with a training score. The higher the score, the better the model is considered to "fit" your data. It will stop once it hits the exit criteria defined in the experiment.
  more information  in the Reference :[automated-ml](https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-first-experiment-automated-ml)
 
-###  Registered Dataset
+### Registered Dataset
 
  - Create a new Automated ML run
+ 
+  ![Automated Ml](./Screenshots/Capture.PNG)
  - Next, make sure you have the dataset uploaded  Copy the link to a new browser window to download the data: https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv
    Upload the bankmarketing_train.csv to Azure Machine Learning Studio so that it can be used when training the model.
+   
+  ![Automated Ml](./Screenshots/Capture1.PNG) 
+   
  - Create and configure your new compute cluster.
  For experiment workloads with high scalability requirements, you can use Azure Machine Learning compute clusters; which are multi-node clusters of Virtual Machines that  automatically scale up or down to meet demand. This is a cost-effective way to run experiments that need to handle large volumes of data or use parallel processing to distribute the workload and reduce the time it takes to run.
- 
+ ![Automated Ml](./Screenshots/Capture28.PNG)
  - Once the new compute cluster is successfully created, use this cluster to run the autoML experiment 
                  more information in the Reference :[compute-target](https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-target)
     
  - You will see the experiment in the experiment section and a new model is created.
  
+  ![Automated Ml](./Screenshots/Capture7.PNG)
+ 
  ### Completed Experiment
  
  After the experiment run completes, a summary of all the models and their metrics are shown, including explanations. The Best Model will be shown in the Details tab. In the   Models tab, it will come up first (at the top). Make sure you select the best model for deployment.
-
+  ![CompletedExperiment](./Screenshots/Capture2.PNG)
+  ![CompletedExperiment](./Screenshots/Capture3.PNG)
+  ![CompletedExperiment](./Screenshots/Capture4.PNG)
+  ![CompletedExperiment](./Screenshots/Capture5.PNG)
+  ![CompletedExperiment](./Screenshots/Capture6.PNG)
+  ![CompletedExperiment](./Screenshots/Capture8.PNG)
+   
 Deploying the Best Model will allow to interact with the HTTP API service and interact with the model by sending data over POST requests.
 
 ## Deploy the Best Model
@@ -115,8 +128,14 @@ Deploying the Best Model will allow to interact with the HTTP API service and in
     * Fill out the form with a meaningful name and description. For Compute Type use Azure Container Instance (ACI)
     * Enable Authentication
     * Do not change anything in the Advanced section.
+    ![DeploytheBest Modell](./Screenshots/Capture9.PNG)
+    
 - Deployment takes a few seconds. After a successful deployment, a green checkmark will appear on the "Run" tab and the "Deploy status" will show as succeed.
 
+     ![DeploytheBest Modell](./Screenshots/Capture27.PNG)
+     ![DeploytheBest Model](./Screenshots/Capture29.PNG)
+     ![DeploytheBest Model](./Screenshots/Capture10.PNG)
+     
 ## Enable Application Insights
 Application Insights is an Azure service that helps you to monitor the performance and behavior of web applications.
 It mostly captures two kinds of data: events and metrics. Events are individual data points that can represent any kind of event that occurs in an app. These events can be technical events that occur within the application runtime or those that are related to the business domain of the application or actions taken by users. Metrics are measurements of values, typically taken at regular intervals, that aren't tied to specific events. Like events, metrics can be related to the application's runtime or infrastructure (like the length of a queue) or related to the application's business domain or users (like how many videos are viewed in an hour).
@@ -125,9 +144,15 @@ It mostly captures two kinds of data: events and metrics. Events are individual 
  [Enable-application-insights](https://docs.microsoft.com/en-us/learn/modules/capture-page-load-times-application-insights/2-enable-application-insights)
  [Enable-application-insights](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-enable-app-insights)
  
+  ![Enable ApplicationInsights](./Screenshots/Capture11.PNG)
+  ![Enable ApplicationInsights](./Screenshots/Capture13.PNG)
+  ![Enable ApplicationInsights](./Screenshots/Capture12.PNG)
+  ![Enable ApplicationInsights](./Screenshots/Capture22.PNG)
+ 
+ 
  ## Swagger Documentation
  
- In this step, you will consume the deployed model using Swagger.
+  In this step, you will consume the deployed model using Swagger.
 
   Azure provides a Swagger JSON file for deployed models. Head to the Endpoints section, and find your deployed model there, it should be the first one on the list.
 
@@ -139,14 +164,27 @@ It mostly captures two kinds of data: events and metrics. Events are individual 
 
 - Run two scripts:
 
-  1-serve.py will start a Python server on port 8000. This script needs to be right next to the downloaded swagger.json file. NOTE: this will not work if swagger.json is not on the same directory.
+  1-serve.py will start a Python server on port 8000. This script needs to be right next to the downloaded swagger.json file. NOTE: this will not work if swagger.json is not on    the same directory .
+  
+  ![Swagger](./Screenshots/Capture33.PNG)
 
   2-swagger.sh which will download the latest Swagger container, and it will run it on port 80. If you don't have permissions for port 80 on your computer, update the script to a higher number (above 9000 is a good idea).
-
- - Open the browser and go to http://localhost:8000 where serve.py should list the contents of the directory. swagger.json must show. If it doesn't, it needs to be downloaded from the deployed model endpoint.
- - Go to http://localhost/ which should have Swagger running from the container (as defined in swagger.sh). If you changed the port number, use that new port number to reach the local Swagger service (for example, http://localhost:9000 if port 9000 is used).
- - On the top bar, where petsore.swagger.io shows, change it to http://localhost:8000/swagger.json, then hit the Explore button. It should now display the contents of the API for the model
+  
+  ![Swagger](./Screenshots/Capture14.PNG)
+  
+ - Open the browser and go to http://localhost:8000 where serve.py should list the contents of the directory. swagger.json must show. If it doesn't, it needs to be downloaded     from the deployed model endpoint
+ 
+ ![Swagger](./Screenshots/Capture15.PNG)
+ 
+ - Go to http://localhost/ which should have Swagger running from the container (as defined in swagger.sh). If you changed the port number, use that new port number to reach the    local Swagger service (for example, http://localhost:9000 if port 9000 is used) 
+ - On the top bar, where petsore.swagger.io shows, change it to http://localhost:8000/swagger.json, then hit the Explore button. It should now display the contents of the API      for the model
+ 
+ ![Swagger](./Screenshots/Capture16.PNG)
+ 
   - Look around at the different HTTP requests that are supported for the model
+     ![Swagger](./Screenshots/Capture16.PNG)
+     ![Swagger](./Screenshots/Capture17.PNG)
+     ![Swagger](./Screenshots/Capture18.PNG)
  
 ## Consume Model Endpoints
 
@@ -157,7 +195,8 @@ Once the model is deployed, use the endpoint.py script provided to interact with
 - In Azure ML Studio, head over to the "Endpoints" section and find a previously deployed model. The compute type should be ACI (Azure Container Instance).
 
 - In the "Consume" tab, of the endpoint, a "Basic consumption info" will show the endpoint URL and the authentication types. Take note of the URL and the "Primary Key" authentication type.
-- Using the provided endpoint.py replace the scoring_uri and key to match the REST endpoint and primary key respectively. The script issues a POST request to the deployed model and gets a JSON response that gets printed to the terminal.
+- Using the provided endpoint.py replace the scoring_uri and key to match the REST endpoint and primary key respectively. The script issues a POST request to the deployed model  and gets a JSON response that gets printed to the terminal.
+ ![endpoint](./Screenshots/Capture34.PNG)
 
 ### Apache Bechmark
 - Make sure you have the Apache Benchmark command-line tool installed and available in your path:
@@ -165,6 +204,9 @@ Once the model is deployed, use the endpoint.py script provided to interact with
 - In the provided started code, there is a benchmark.sh script with a call to ab similar to this:
 
  ab -n 10 -v 4 -p data.json -T 'application/json' -H 'Authorization: Bearer SECRET' http://URL.azurecontainer.io/score 
+ 
+  ![Bechmark](./Screenshots/Capture21.PNG)
+  ![Bechmark](./Screenshots/Capture20.PNG)
 
 ##  Create Publish and Consume a Pipeline
  For this part we used the Jupyter Notebook provided. In the notebook, firts we initialized the workspace, we specified the Azure ML experiment, attached the computed cluster, we loaded the Bank marketing dataset, we configured the AutoML using the AutoMLConfig class. We also used th AutoMLStep class to specify the steps of the pipeline. Then we created the pipeline and submitted the experiment. Once the experiment is completed, we can see the diagram of the pipeline in the Azure ML studio. We can see the pipeline first has the bankmarketing dataset module followed by the AutoML module.
@@ -180,8 +222,11 @@ When creating a Pipeline. Pipelines can take configuration and different steps a
  - Recurring schedule: A way to schedule pipelines to run at a given interval
  - Pipeline parameters: Like variables in a Python script, these can be passed into a script argument
 #### Bankmarketing dataset with AutoML Module
+ ![Pipeline](./Screenshots/Capture35.PNG)
+ ![Pipeline](./Screenshots/Capture23.PNG)
 
 #### Use RunDetails Widget
+  ![Pipeline](./Screenshots/Capture36.PNG)
   
 #### Publishing a pipeline
 
@@ -190,6 +235,8 @@ Then we published the pipeline using the publish_pipeline method. It generated t
 Publishing a pipeline is the process of making a pipeline publicly available. You can publish pipelines in Azure Machine Learning Studio, but you can also do this with the Python SDK.
 When a Pipeline is published, a public HTTP endpoint becomes available, allowing other services, including external ones, to interact with an Azure Pipeline.
 
+   ![Pipeline](./Screenshots/Capture25.PNG)
+   ![Pipeline](./Screenshots/Capture26.PNG)
 ##### Automation with pipelines
 
 Pipelines are all about Automation. Automation connects different services and actions together to be part of a new workflow that wasn’t possible before.
@@ -211,5 +258,7 @@ Interacting with a pipeline via an HTTP API endpoint more information in the Ref
 
 Use a Parallel Run Step in a pipeline. Reference: ["How to use parallel run stepin a pipeline"](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-parallel-run-step)
 
-## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+## Screencast Video
+Finally I recorded a screencast that shows the entire process of the working ML application.
+
+
