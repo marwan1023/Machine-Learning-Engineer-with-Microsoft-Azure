@@ -21,7 +21,7 @@
         - [Create Pipeline](#create-pipeline)
         - [Bankmarketing dataset with AutoML Module](#bankmarketing-dataset-with-automl-module)
         - [Use RunDetails Widget](#use-rundetails-widget)
-        - [Published Pipeline](#published-pipeline-overview)
+        - Publishing a pipeline](#Publishing-a-pipeline)
         - [Scheduled run in ML Studio](#scheduled-run-in-ml-studio)
         - [Automation with pipelines](#automation-with-pipelines)
    * [Screencast Video](#screencast-video)
@@ -144,6 +144,8 @@ It mostly captures two kinds of data: events and metrics. Events are individual 
  [Enable-application-insights](https://docs.microsoft.com/en-us/learn/modules/capture-page-load-times-application-insights/2-enable-application-insights)
  [Enable-application-insights](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-enable-app-insights)
  
+### Logging Enabled
+ 
   ![Enable ApplicationInsights](./Screenshots/Capture11.PNG)
   ![Enable ApplicationInsights](./Screenshots/Capture13.PNG)
   ![Enable ApplicationInsights](./Screenshots/Capture12.PNG)
@@ -169,6 +171,8 @@ It mostly captures two kinds of data: events and metrics. Events are individual 
   ![Swagger](./Screenshots/Capture33.PNG)
 
   2-swagger.sh which will download the latest Swagger container, and it will run it on port 80. If you don't have permissions for port 80 on your computer, update the script to a higher number (above 9000 is a good idea).
+  
+ ### Swagger UI
   
   ![Swagger](./Screenshots/Capture14.PNG)
   
