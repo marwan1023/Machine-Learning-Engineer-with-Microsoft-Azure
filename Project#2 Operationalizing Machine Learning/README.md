@@ -21,7 +21,7 @@
         - [Create Pipeline](#create-pipeline)
         - [Bankmarketing dataset with AutoML Module](#bankmarketing-dataset-with-automl-module)
         - [Use RunDetails Widget](#use-rundetails-widget)
-        - Publishing a pipeline](#Publishing-a-pipeline)
+        - [Publishing a pipeline](#Publishing-a-pipeline)
         - [Scheduled run in ML Studio](#scheduled-run-in-ml-studio)
         - [Automation with pipelines](#automation-with-pipelines)
    * [Screencast Video](#screencast-video)
