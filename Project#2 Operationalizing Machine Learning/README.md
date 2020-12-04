@@ -25,6 +25,7 @@ By Marwan Saeed Alsharabbi
         - [Publishing a pipeline](#Publishingpipeline)
         - [Scheduled run in ML Studio](#scheduled-run-in-ml-studio)
         - [Automation with pipelines](#automation-with-pipelines)
+   * [improve this project in the future](#improve-this-project-in-the-future)
    * [Screencast Video](#screencast-video)
 
 
@@ -273,7 +274,17 @@ Interacting with a pipeline via an HTTP API endpoint more information in the Ref
 
 Use a Parallel Run Step in a pipeline. Reference: ["How to use parallel run stepin a pipeline"](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-parallel-run-step)
 
-## Screencast Video
+## improve this project in the future
+Data guardrails are run by Automated ML when automatic featurization is enabled. This is a sequence of checks over the input data to ensure high quality data is being used to train model.
+![improve this project in the future](./Screenshots/Capture42.PNG)
+
+We can improve this project in the future trying several options. For example in the AutoML experiment we can Enable Deep Learning option for the Classification task in order to help to featurize text data and may provide higher accuracy.
+![improve this project in the future](./Screenshots/Capture41.PNG)
+#### Feature engineering
+Feature engineering is the process of using domain knowledge of the data to create features that help ML algorithms learn better. In Azure Machine Learning, scaling and normalization techniques are applied to facilitate feature engineering. Collectively, these techniques and feature engineering are referred to as featurization.
+For automated machine learning experiments, featurization is applied automatically, but can also be customized based on your data. 
 Finally I recorded a screencast that shows the entire process of the working ML application.
+#### Extend the training job time for the experiment
+Also we can extend the training job time for the experiment and also we can specify the models which can be used for Experiments under Blocked model. In the process of creation of the pipeline, we can perform several other tasks aside from training a model such as Data Preparation, Validation, Bactch scoring and combine tasks.
 
 https://drive.google.com/file/d/1PPXQamFQGYau8BndC2CarCN0Ohw20ggH/view?usp=sharing
