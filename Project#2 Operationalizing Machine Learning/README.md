@@ -287,4 +287,7 @@ Finally I recorded a screencast that shows the entire process of the working ML 
 #### Extend the training job time for the experiment
 Also we can extend the training job time for the experiment and also we can specify the models which can be used for Experiments under Blocked model. In the process of creation of the pipeline, we can perform several other tasks aside from training a model such as Data Preparation, Validation, Bactch scoring and combine tasks.
 
+## Screencast Video
+Finally I recorded a screencast that shows the entire process of the working ML application.
+
 https://drive.google.com/file/d/1PPXQamFQGYau8BndC2CarCN0Ohw20ggH/view?usp=sharing
