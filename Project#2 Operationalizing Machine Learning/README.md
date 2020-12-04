@@ -279,11 +279,14 @@ Data guardrails are run by Automated ML when automatic featurization is enabled.
 ![improve this project in the future](./Screenshots/Capture42.PNG)
 
 We can improve this project in the future trying several options. For example in the AutoML experiment we can Enable Deep Learning option for the Classification task in order to help to featurize text data and may provide higher accuracy.
+
 ![improve this project in the future](./Screenshots/Capture41.PNG)
+
 #### Feature engineering
 Feature engineering is the process of using domain knowledge of the data to create features that help ML algorithms learn better. In Azure Machine Learning, scaling and normalization techniques are applied to facilitate feature engineering. Collectively, these techniques and feature engineering are referred to as featurization.
 For automated machine learning experiments, featurization is applied automatically, but can also be customized based on your data. 
 Finally I recorded a screencast that shows the entire process of the working ML application.
+
 #### Extend the training job time for the experiment
 Also we can extend the training job time for the experiment and also we can specify the models which can be used for Experiments under Blocked model. In the process of creation of the pipeline, we can perform several other tasks aside from training a model such as Data Preparation, Validation, Bactch scoring and combine tasks.
 
