@@ -6,8 +6,7 @@ Table of Contents
   * [Architecture](#architecture)
   * [Project Steps](#project-steps)
     + [Dataset](#dataset)
-    + [Access](#access)
-    + [AutoML Model](#automl-model)
+      + [AutoML Model](#automl-model)
       - [Pipeline](#pipeline)
       - [AutoML Config](#automl-config)
       - [RunDetails](#rundetails)
@@ -34,30 +33,38 @@ Table of Contents
   * [Screen Recording](#screen-recording)
 
 ## Overview
-This is the Capstone Project of the Udacity Microsoft MLE Nanodegree. This project leverages Azure Machine Learning to help in the early detection of heart attacks, which is a disease that thousands of people suffer from in the world and that unfortunately it causes many deaths. In particular, this project demonstrates the cleaning, preprocessing, and registering of an external dataset; automated machine learning; hyperparameter tuning using HyperDrive; the creation of machine learning pipelines and retrieval of its artefacts (models, transformers) and metrics; evaluation and comparison of two models; and the deployment of a trained model for use. This is a clear example of how machine learning can be applied in the Health field to help predict diseases that affect millions of people in order to predict these diseases in time and to save lives in some way. I hope this project can motivate other people to apply machine learning for the good of society.
+This is the Capstone Project of the Udacity Microsoft MLE Nanodegree. This project leverages Azure Machine Learning to help in the Heart Failure Prediction,
+ardiovascular diseases (CVDs) are the number 1 cause of death globally, taking an estimated 17.9 million lives each year, which accounts for 31% of all deaths worlwide.
+Heart failure is a common event caused by CVDs and this dataset contains 12 features that can be used to predict mortality by heart failure.
+Most cardiovascular diseases can be prevented by addressing behavioural risk factors such as tobacco use, unhealthy diet and obesity, physical inactivity and harmful use of alcohol using population-wide strategies.
+People with cardiovascular disease or who are at high cardiovascular risk (due to the presence of one or more risk factors such as hypertension, diabetes, hyperlipidaemia or already established disease) need early detection and management wherein a machine learning model can be of great help.
+ In particular, this project demonstrates the cleaning, preprocessing, and registering of an external dataset; automated machine learning; hyperparameter tuning using HyperDrive; the creation of machine learning pipelines and retrieval of its artefacts (models, transformers) and metrics; evaluation and comparison of two models; and the deployment of a trained model for use. This is a clear example of how machine learning can be applied in the Health field to help predict diseases that affect millions of people in order to predict these diseases in time and to save lives in some way. I hope this project can motivate other people to apply machine learning for the good of society.
+ 
+The dataset contains 299 training examples in a csv file.
+
+https://www.kaggle.com/andrewmvd/heart-failure-clinical-data
+
+https://archive.ics.uci.edu/ml/machine-learning-databases/00519/heart_failure_clinical_records_dataset.csv.
 
 ## Architecture
-First we have to choose a Dataset from an external resource like Kaggle, UCI, etc and import the dataset into the Azure ML Workspace. Then we have to train differents model using Automated ML and in the other experiment we have to train a model using Hyperdrive. After that we have to compare the performance of both best models and choose the best one in order to deploy it. Once deployed we have to test the model endpoint. At the end we can also do some Standout Suggestions such as convert the model into ONNX format and deploy the model using IoT Edge in order to demonstrate all the knowledge from this Nanodegree.
-
-![architecture](/image/img100.jpg)
+First we have to choose a Dataset from an external resource like Kaggle, UCI, etc and import the dataset into the Azure ML Workspace. Then we have to train differents model using Automated ML and in the other experiment we have to train a model using Hyperdrive. After that we have to compare the performance of both best models and choose the best one in order to deploy it. Once deployed we have to test the model endpoint.
+![architecture](./Shortcat/capstone-diagram.png)
+![architecture](./Shortcat/MLworkflow.png)
 
 ## Project Steps
 
 ### Dataset
-In many regions with a high poverty rate there are hospitals with basic equipment. Sick people come to be treated for very common illnesses such as heart attacks, but many times doctors can't help them due to lack of equipment. Thus this solution can help doctors to predict in time whether a person is prone to suffer a heart attack and thus give them timely treatment.
-For that reason I chose the Cardiovascular Disease dataset from Kaggle. Cardiovascular Disease dataset is a Kaggle Dataset the containts history of health status of some persons. A group of them suffered a heart attackt. So using this dataset we can train a model in order to predict if a person could suffer a heart attack. This data comes from hospital records, but the original source is not available.
+In many areas with high poverty rates, there are hospitals with basic equipment. Patients are treated for very common ailments such as heart attacks, but many times doctors cannot help them due to lack of equipment. Thus this solution can help clinicians to predict in time whether a person is at risk of developing heart failure and thus provide treatment in a timely manner.
+That's why I chose the Kaggle Cardiovascular Disease Dataset. The Heart Failure Prediction Dataset is a Kaggle dataset that contains health history of some people. And a group of them had a Heart Failure Prediction. So using this dataset, we can train a model to predict whether a person might have a Heart Failure Prediction. This data comes from hospital records, but the original source is not available.
 
-![dataset](/image/img000.jpg)
+![dataset](./Shortcat/datset.PNG)
 
-The dataset consists of 70'000 records of patients data, the half of which unfortunately suffered a heart attack. So the dataset has a class balance. The data required in order to predict if a person could suffer a heart attack is the following: age, gender, heigth, weight, blood pressure, cholesterol, glucosa, smoke. These are common variables that can be easily obtained in a medical check-up.
+To make predictions about heart failure, we used the open source Heart Failure Prediction dataset from kaggle to build a classification model. This dataset uses 12 clinical features for predicting death events by heart failure.
 
-![dataset](/image/img053.jpg)
-
-### Access
-
-We can download the data from Kaggle page (https://www.kaggle.com/sulianova/cardiovascular-disease-dataset). So I've download the data in the /kaggle directory and then I convert the data into parquet format, which is more efficient in terms of storage and performance. Then I uploaded this dato to Azure Blob Sotrage and after that I registered this Dataset in the Azure ML Studio.
-
-![dataset](/image/img003.jpg)
+![dataset](./Shortcat/Capture.PNG)
+![dataset](./Shortcat/Capture1.PNG)
+![dataset](./Shortcat/Heartdata.PNG)
+![dataset](./Shortcat/Datasests.PNG)
 
 ### AutoML Model
 
@@ -195,6 +202,11 @@ Finally, I consumed the pipeline endpoint and the Pipeline started to run again.
 
 ## Future Improvements
 We can improve this project in the future trying several options. For example in the AutoML experiment we can extend the training job time for the experiment and also we can specify the models which can be used for Experiments under Blocked model. In the Hyperdrive experiment, we can test another algorithms like XGBoost in order to get the best hyperparameters. Also we can add more steps for the pipeline, for example a step to do standarization and normalization of the variables. Finally I would recommend get an explanation of the model in order to explain the most important variables and also we can use the Fairness SDK to make an analysis if the model is getting bias for a certain variable like gender for example.
+
+
+
+ At the end we can also do some Standout Suggestions such as convert the model into ONNX format and deploy the model using IoT Edge in order to demonstrate all the knowledge from this Nanodegree.
+
 
 ## Screen Recording
 Finally I recorded a screencast that shows the entire process of the Capstone Project.
