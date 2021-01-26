@@ -43,6 +43,11 @@ https://www.kaggle.com/andrewmvd/heart-failure-clinical-data
 
 https://archive.ics.uci.edu/ml/machine-learning-databases/00519/heart_failure_clinical_records_dataset.csv.
 
+- This project is part of Udacity Capstone Project. It is performed using two models:
+
+- Automated ML
+- Hyperparameters are tuned using HyperDrive.
+
 ## Architecture
 First we have to choose a Dataset from an external resource like Kaggle, UCI, etc and import the dataset into the Azure ML Workspace. Then we have to train differents model using Automated ML and in the other experiment we have to train a model using Hyperdrive. After that we have to compare the performance of both best models and choose the best one in order to deploy it. Once deployed we have to test the model endpoint.
 ![architecture](./Shortcat/capstone-diagram.png)
@@ -95,13 +100,28 @@ Namespace: azureml.train.automl.automlconfig.AutoMLConfig
 
 Use the AutoMLConfig class to configure parameters for automated machine learning training. Automated machine learning iterates over many combinations of machine learning algorithms and hyperparameter settings. It then finds the best-fit model based on your chosen accuracy metric. Configuration allows for specifying:
 
-- Task type (classification, regression, forecasting) -> classification 
-- Number of algorithm iterations and maximum time per iteration -> 5
-- Accuracy metric to optimize -> Accuracy
+In this model we have used Automated ML to train and tune a model to perform a classification task. The main goal of the classification models is to predict which categories new data will fall into based on learnings from its training data, which in this case is to determine the "status" of the placement of the student. The automl settings used are:
+
+- experiment_timeout_hours- which is set to 30 ,i.e, 18 minutes. experiment_timeout_hours is the maximum time in hours that all iterations combined can take before the experiment terminates
+ - max_concurrent_iterations- is set to 5 and it represents the maximum number of iterations that would be executed in parallel. This value should be less than or equal to the maximum number of nodes as compute clusters support one interaction running per node.
+ - primary_metric- is set to accuracy and this is the metric that Automated Machine Learning will optimize for model selection.
+ - a validation_data or n_cross_validation parameter, automated ML applies default techniques to determine how validation is performed. This determination depends on the number of rows in the dataset assigned to your training_data parameter.
+ - nable_early_stopping- is set to true. This enables early termination if the score is not improving in the short term. We must keep in mind that there is no early stopping for the first 20 iterations and though the early stopping window starts in the 21st iteration it looks for early_stopping_n_iters iterations which is currently set to 10 before the first iteration is stopped, i.e, the 31st iteration. AutoML still
+ - "featurization": 'auto'	Indicates that as part of preprocessing, data guardrails and featurization steps are performed automatically. Default setting.
+ - label_column_name- is set to label =""DEATH_EVENT"" The target ("DEATH_EVENT") column with values of 1 means person will suffer from heart failure and 0 means no heart failure.
+- The path is configured to project folder = './capstone-project3' and debug_log to automl_errors.log. Automl settings are also used in the configuration. I have used a custom environment saved as file conda_env.yml the savee in file inference.
+- task- task is set to classification as the aim of our model is to "DEATH_EVENT") column with values of 1 means person will suffer from heart failure and 0 means no heart failure.
+- compute_target-we have used remote compute target vm_size='STANDARD_DS3_V2', max_nodes=4)
+- training_data - I used all the data because the data contains 299 rows that do not need to be divided as a training and test group.
+- Explain model prediction by generating feature importance values for the entire model and/or individual datapoints.
+
+- Task type (classification, regression, forecasting) 
+- Number of algorithm iterations and maximum time per iteration 
+- Accuracy metric to optimize -
 - Algorithms to blacklist/whitelist 
-- Number of cross-validations -> 5
-- Compute targets -> vm_size='STANDARD_DS3_V2', max_nodes=4)
-- Training data ->  all dataset
+- Number of cross-validations 
+- Compute targets
+- Training data 
 
  ![automl](./Shortcat/CaptureA.PNG)
 
