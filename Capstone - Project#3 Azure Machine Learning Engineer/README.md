@@ -29,13 +29,15 @@ Table of Contents
   * [Future Improvements](#future-improvements)
   * [Screen Recording](#screen-recording)
   
-  ##  This project is part of Udacity Capstone Project. It is performed using two models:
-
-- Automated ML
-
-- Hyperparameters are tuned using HyperDrive.
-
-
+ - In this project we create two models: one using
+ 
+  ### Automated ML and 
+  ###  Hyperparameters are tuned using HyperDrive.
+  
+ We then compare the performance of both the  models and deploy the best performing model. Once the model is deployed successfully we test the endpoint. 
+ This project is a part of the Machine Learning Engineer with Microsoft Azure ND-Udacity. 
+  
+  
 ## Overview
 This is the Capstone Project of the Udacity Microsoft MLE Nanodegree. This project leverages Azure Machine Learning to help in the Heart Failure Prediction,
 ardiovascular diseases (CVDs) are the number 1 cause of death globally, taking an estimated 17.9 million lives each year, which accounts for 31% of all deaths worlwide.
