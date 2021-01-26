@@ -156,12 +156,9 @@ Once the HyperDrive experiment finished running we got different trained models,
  -Accuracy: 0.8222222222222222
  -Regularization Rate: ['--C', '0.9939177083701627', '--max_iter', '150', '--regularization', '0.05'] .
 
-![hyperdrive](./Shortcat/Capture9h.PNG)
-![hyperdrive](./Shortcat/Captureh3.PNG)
-
 We can see the best model in the Azure ML Studio with its metrics and hyperparameters obtained.
 
-![hyperdrive](./Shortcat/Capture9h.PNG)
+![hyperdrive](./Shortcat/Captureh3.PNG)
 
 
 #### Save and Register Model
