@@ -63,7 +63,6 @@ That's why I chose the Kaggle Cardiovascular Disease Dataset. The Heart Failure 
 To make predictions about heart failure, we used the open source Heart Failure Prediction dataset from kaggle to build a classification model. This dataset uses 12 clinical features for predicting death events by heart failure.
 
 ![dataset](./Shortcat/Capture.PNG)
-![dataset](./Shortcat/Capture1.PNG)
 ![dataset](./Shortcat/Heartdata.PNG)
 ![dataset](./Shortcat/Datasests.PNG)
 
@@ -114,30 +113,30 @@ After the experiment finished running we got different trained models, each one 
 ### Model Deployment
 
 #### Register Model 
-The first step in order to deploy a model is register it. I used the register_model method from the best_run of the HyperDrive experiment. Then we can see that the model is registered.
+The first step in order to deploy a model is register it. I used the register_model method from the best_run of the Atoml-pipline experiment. Then we can see that the model is registered.
 ![deployment](./Shortcat/Capturesavemodel.PNG)
 ![deployment](./Shortcat/Captureregstranddoply.PNG)
 
-![deployment](/image/img031.jpg)
 
 #### Deploy Model
-Beafore deploy the model, we have to create the scoring file and the environment file. Then we have to set up the parameters for the Azure Container Instance and then we can deploy the model.
+Beafore deploy the model, we have to create the scoring file and the environment file. Then we have to set up the parameters for the Azure Container Instance and then we can deploy the model and the deployment process take some minutes, then we can see the information of the model deployed like the REST endpoint and the authentication keys.
 
-![deployment](/image/img034.jpg)
+![deployment](./Shortcat/Capture7.PNG)
+![deployment](./Shortcat/Capture8.PNG)
 
-The deployment process take some minutes, then we can see the information of the model deployed like the REST endpoint and the authentication keys.
+Published pipline overview
 
-![deployment](/image/img035.jpg)
-![deployment](/image/img036.jpg)
+![deployment](./Shortcat/Capture12.PNG)
+
+Application insights of Automl service
+
+![deployment](./Shortcat/Captureinsigth.PNG)
+
 
 #### Consume Model Endpoint
 We can consume the model endpoint using the HTTP API. First we have to specify the model endpoint and the primary key for authentication. Then we have to provide the data to predict in json format. With this information we can make a request for the endpoint and it will return the predictions.
 
-![deployment](/image/img042.jpg)
-
-The data format required to make predictions is the following:
-
-![deployment](/image/img055.jpg)
+![deployment](./Shortcat/Captureconsam.PNG)
 
 ### Hyperdrive Model
 
