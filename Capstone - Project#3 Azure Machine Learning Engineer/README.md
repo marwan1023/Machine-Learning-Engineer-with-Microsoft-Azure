@@ -12,6 +12,10 @@ Table of Contents
       - [RunDetails](#rundetails)
       - [Best Model](#best-model)
       - [Save and Register Model](#save-and-register-model)
+     + [Model Deployment](#model-deployment)
+       - [Register Model](#register-model)
+       - [Deploy Model](#deploy-model)
+       - [Consume Model Endpoint](#consume-model-endpoint)
     + [Hyperdrive Model](#hyperdrive-model)
       - [Pipeline](#pipeline-1)
       - [HyperDrive config](#hyperdrive-config)
@@ -19,10 +23,7 @@ Table of Contents
       - [Best Model](#best-model-1)
       - [Saving Model](#saving-model)
     + [Comparison of the two models](#comparison-of-the-two-models)
-    + [Model Deployment](#model-deployment)
-      - [Register Model](#register-model)
-      - [Deploy Model](#deploy-model)
-      - [Consume Model Endpoint](#consume-model-endpoint)
+    
       - [Services cleanup](#services-cleanup)
     + [Standout Suggestions](#standout-suggestions)
       - [Convert model into ONNX format](#convert-model-into-onnx-format)
@@ -72,30 +73,71 @@ To make predictions about heart failure, we used the open source Heart Failure P
 As Data Scientists we know that before training a model, we have to do some process like feature engineering in order to get better models. So for that reason I decided to build a Pipeline with steps such as cleaning data, filtering, do some transformations and split the dataset into train and test sets. The last module correspond to the AutoML in order to train several kinds of models such as LightGBM, XGBoost, Logistic Regression, VotingEnsemble, among other algorithms.
 
 #### AutoML Config
-In order to run an AutoML experiment, we have to set up some parameters in the automl_config like the classification task, the primary metric, the label column, etc. In this case, first I chose the AUC as primary metric, which means Area Under the Curve between True Positive Rate and False Positive Rate. So with this metric we can measure how well the model can distinguish two classes, the better the classification algorithm is, the higher the area under the roc curve. Then I setted up the maximum concurrent iterarions as 5 because this value has to be lower than the number of nodes of the compute cluster, for this project I created a compute cluster of size STANDARD_DS12_V2 with 6 nodes at maximum. I setted up the experiment timeout to 30 minutes because the dataset is not large and this amount of time is enough to get good models. I specified the number of cross validation as 5 folds, this means that the 20% of the dataset will be used for testing in each validation. Then I setted up the mpdel_explaibility as True in order to get later an explanation of the model, I specofied the label column as teh cardio variable because this is the variable that we wan to predict later. I used the auto featurizarion which Indicates that as part of preprocessing, data guardrails and featurization steps are performed automatically. Finally I enabled the early stopping as as form of regularization to avoid overfitting.
+This creates a general AutoML settings object.
+These inputs must match what was used when training in the portal. `label_column_name` has to be `DEATH_EVENT` for example.
+Namespace: azureml.train.automl.automlconfig.AutoMLConfig
 
-![automl](/image/img054.jpg)
+Use the AutoMLConfig class to configure parameters for automated machine learning training. Automated machine learning iterates over many combinations of machine learning algorithms and hyperparameter settings. It then finds the best-fit model based on your chosen accuracy metric. Configuration allows for specifying:
 
-Then I created the AutoML step and I summitted the experiment. It took like 1 hour in order to run all the steps of the pipeline.
+- Task type (classification, regression, forecasting) -> classification 
+- Number of algorithm iterations and maximum time per iteration -> 5
+- Accuracy metric to optimize -> Accuracy
+- Algorithms to blacklist/whitelist 
+- Number of cross-validations -> 5
+- Compute targets -> vm_size='STANDARD_DS3_V2', max_nodes=4)
+- Training data ->  all dataset
 
-![automl](/image/img005.jpg)
+ ![automl](./Shortcat/CaptureA.PNG)
+
+Then I created the AutoML step and I summitted the experiment. It took like 34:07 in order to run all the steps of the pipeline.
+
+![automl](./Shortcat/ACapture.PNG)
+![automl](./Shortcat/ACapture1.PNG)
 
 #### RunDetails
 I used the RunDetails tool in order to get some information about the AutoML experiment. We can see I got some information of the model like the accuracy and the AUC and also the status and description of the experiment.
 
-![automl](/image/img010.jpg)
+![automl](./Shortcat/Capturea1.PNG)
+![automl](./Shortcat/Capturea2.PNG)
+
 
 #### Best Model
-After the experiment finished running we got different trained models, each one with its AUC metric. The best model was the VotingEnsemble with AUC=0.8021. One advantege of the AutoML is that it also gives an explanation of the model. 
+After the experiment finished running we got different trained models, each one with its AUC metric. The best model was the VotingEnsemble with AUC=0.91359 and Accurcay = 0.87633. One advantege of the AutoML is that it also gives an explanation of the model. 
 
-![automl](/image/img008.jpg)
-![automl](/image/img007.jpg)
+![automl](./Shortcat/Capture3.PNG)
+![automl](./Shortcat/Capture4.PNG)
+![automl](./Shortcat/Capture6.PNG)
+![automl](./Shortcat/Capture16.PNG)
+![automl](./Shortcat/Capture17.PNG)
+![automl](./Shortcat/Capture18.PNG)
 
-#### Save and Register Model
-Once I got the best model of the AutoML experiment, I saved the model in the pickle format. Also I tested the model using the test dataset in order to compare with other models. Then I registered the model using the register_model method from the AutoML run.
+### Model Deployment
 
-![automl](/image/img056.jpg)
-![automl](/image/img057.jpg)
+#### Register Model 
+The first step in order to deploy a model is register it. I used the register_model method from the best_run of the HyperDrive experiment. Then we can see that the model is registered.
+![deployment](./Shortcat/Capturesavemodel.PNG)
+![deployment](./Shortcat/Captureregstranddoply.PNG)
+
+![deployment](/image/img031.jpg)
+
+#### Deploy Model
+Beafore deploy the model, we have to create the scoring file and the environment file. Then we have to set up the parameters for the Azure Container Instance and then we can deploy the model.
+
+![deployment](/image/img034.jpg)
+
+The deployment process take some minutes, then we can see the information of the model deployed like the REST endpoint and the authentication keys.
+
+![deployment](/image/img035.jpg)
+![deployment](/image/img036.jpg)
+
+#### Consume Model Endpoint
+We can consume the model endpoint using the HTTP API. First we have to specify the model endpoint and the primary key for authentication. Then we have to provide the data to predict in json format. With this information we can make a request for the endpoint and it will return the predictions.
+
+![deployment](/image/img042.jpg)
+
+The data format required to make predictions is the following:
+
+![deployment](/image/img055.jpg)
 
 ### Hyperdrive Model
 
@@ -126,6 +168,10 @@ We can see the best model in the Azure ML Studio with its metrics and hyperparam
 
 ![hyperdrive](/image/img058.jpg)
 
+
+#### Save and Register Model
+Once I got the best model of the AutoML experiment, I saved the model in the pickle format. Also I tested the model using the test dataset in order to compare with other models. Then I registered the model using the register_model method from the AutoML run.
+
 #### Saving Model
 Once I got the best model of the HyperDrive experiment, I saved the model in the pickle format. Also I tested the model using the test dataset in order to compare with the previous model.
 
@@ -135,31 +181,7 @@ For both experiments I used the AUC metric in order to compare them. We've seen 
 ![comparison](/image/img029.jpg)
 ![comparison](/image/img028.jpg)
 
-### Model Deployment
 
-#### Register Model
-The first step in order to deploy a model is register it. I used the register_model method from the best_run of the HyperDrive experiment. Then we can see that the model is registered.
-
-![deployment](/image/img031.jpg)
-
-#### Deploy Model
-Beafore deploy the model, we have to create the scoring file and the environment file. Then we have to set up the parameters for the Azure Container Instance and then we can deploy the model.
-
-![deployment](/image/img034.jpg)
-
-The deployment process take some minutes, then we can see the information of the model deployed like the REST endpoint and the authentication keys.
-
-![deployment](/image/img035.jpg)
-![deployment](/image/img036.jpg)
-
-#### Consume Model Endpoint
-We can consume the model endpoint using the HTTP API. First we have to specify the model endpoint and the primary key for authentication. Then we have to provide the data to predict in json format. With this information we can make a request for the endpoint and it will return the predictions.
-
-![deployment](/image/img042.jpg)
-
-The data format required to make predictions is the following:
-
-![deployment](/image/img055.jpg)
 
 #### Services cleanup
 After all the steps, we can delete the ACI service and also we can delete the Compute cluster from its associated workspace in order to clean up services.
