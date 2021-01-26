@@ -39,11 +39,10 @@ People with cardiovascular disease or who are at high cardiovascular risk (due t
  
 The dataset contains 299 training examples in a csv file.
 
-https://www.kaggle.com/andrewmvd/heart-failure-clinical-data
+ The link dawnload data from [kaggle](https://www.kaggle.com/andrewmvd/heart-failure-clinical-data) or   [archive.ics.uci.edu](https://archive.ics.uci.edu/ml/machine-learning-databases/00519/heart_failure_clinical_records_dataset.csv.)
 
-https://archive.ics.uci.edu/ml/machine-learning-databases/00519/heart_failure_clinical_records_dataset.csv.
 
-- This project is part of Udacity Capstone Project. It is performed using two models:
+#### This project is part of Udacity Capstone Project. It is performed using two models:
 
 - Automated ML
 - Hyperparameters are tuned using HyperDrive.
