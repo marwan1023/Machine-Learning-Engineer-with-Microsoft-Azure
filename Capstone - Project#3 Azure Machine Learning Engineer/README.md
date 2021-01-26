@@ -1,3 +1,6 @@
+### Machine-Learning-Engineer-with-Microsoft-Azure
+By Marwan Saeed Alsharabbi
+
 # Capstone Project
 
 Table of Contents
@@ -50,6 +53,27 @@ First we have to choose a Dataset from an external resource like Kaggle, UCI, et
 ### Dataset
 In many areas with high poverty rates, there are hospitals with basic equipment. Patients are treated for very common ailments such as heart attacks, but many times doctors cannot help them due to lack of equipment. Thus this solution can help clinicians to predict in time whether a person is at risk of developing heart failure and thus provide treatment in a timely manner.
 That's why I chose the Kaggle Cardiovascular Disease Dataset. The Heart Failure Prediction Dataset is a Kaggle dataset that contains health history of some people. And a group of them had a Heart Failure Prediction. So using this dataset, we can train a model to predict whether a person might have a Heart Failure Prediction. This data comes from hospital records, but the original source is not available.
+
+
+12 clinical features:
+
+- age: age of the patient (years)
+- anaemia: decrease of red blood cells or hemoglobin (boolean)
+- high blood pressure: if the patient has hypertension (boolean)
+- creatinine phosphokinase (CPK): level of the CPK enzyme in the blood (mcg/L)
+- diabetes: if the patient has diabetes (boolean)
+- ejection fraction: percentage of blood leaving the heart at each contraction (percentage)
+- platelets: platelets in the blood (kiloplatelets/mL)
+- sex: woman or man (binary)
+- serum creatinine: level of serum creatinine in the blood (mg/dL)
+- serum sodium: level of serum sodium in the blood (mEq/L)
+- smoking: if the patient smokes or not (boolean)
+- time: follow-up period (days)
+
+### Task
+
+In this project, we will predict the death prediction or Heart failure rate with the help of 12 attributes provided in the dataset. The target ("DEATH_EVENT") column with values of 1 means person will suffer from heart failure and 0 means no heart failure.
+
 
 ![dataset](./Shortcat/datset.PNG)
 
@@ -151,7 +175,8 @@ I used the RunDetails tool in order to get some information about the HyperDrive
 ![hyperdrive](./Shortcat/Capture9h.PNG)
 
 #### Best Model
-Once the HyperDrive experiment finished running we got different trained models, each one with its AUC metric and its hyperparameters. The best model was a LightGBM algorithm with Best Run Id:  HD_93501b78-a2ca-4df3-9184-1a1ba57dd388_0
+Once the HyperDrive experiment finished running we got different trained models, each one with its AUC metric and its hyperparameters. 
+with Best Run Id:  HD_93501b78-a2ca-4df3-9184-1a1ba57dd388_0
  -AUC: 0.8237327188940091
  -Accuracy: 0.8222222222222222
  -Regularization Rate: ['--C', '0.9939177083701627', '--max_iter', '150', '--regularization', '0.05'] .
@@ -162,7 +187,7 @@ We can see the best model in the Azure ML Studio with its metrics and hyperparam
 
 
 #### Save and Register Model
-Once I got the best model of the AutoML experiment, I saved the model in the pickle format. Also I tested the model using the test dataset in order to compare with other models. Then I registered the model using the register_model method from the AutoML run.
+Once I got the best model of the AutoML experiment, I saved the model in the pickle format. Also I tested the model using the test dataset in order to compare with other models. Then I registered the model using the register_model method from the HyperDrive run.
 ![hyperdrive](./Shortcat/Capturehdsave.PNG)
 ![hyperdrive](./Shortcat/Captureh2.PNG)
 ![hyperdrive](./Shortcat/Captureh4.PNG)
