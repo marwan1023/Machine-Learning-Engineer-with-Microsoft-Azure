@@ -32,8 +32,8 @@ Table of Contents
   
  In this project we create two models: one using
  
-  #### Automated ML and 
-  ####  Hyperparameters are tuned using HyperDrive.
+  #### 1- Automated ML
+  #### 2- Hyperparameters are tuned using HyperDrive.
   
  We then compare the performance of both the  models and deploy the best performing model. Once the model is deployed successfully we test the endpoint. 
  This project is a part of the Machine Learning Engineer with Microsoft Azure ND-Udacity. 
