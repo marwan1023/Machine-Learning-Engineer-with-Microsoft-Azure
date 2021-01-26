@@ -11,25 +11,18 @@ Table of Contents
       - [AutoML Config](#automl-config)
       - [RunDetails](#rundetails)
       - [Best Model](#best-model)
-      - [Save and Register Model](#save-and-register-model)
+      - [Saving Model](#saving-model)
      + [Model Deployment](#model-deployment)
        - [Register Model](#register-model)
        - [Deploy Model](#deploy-model)
        - [Consume Model Endpoint](#consume-model-endpoint)
     + [Hyperdrive Model](#hyperdrive-model)
-      - [Pipeline](#pipeline-1)
       - [HyperDrive config](#hyperdrive-config)
       - [RunDetails](#rundetails-1)
       - [Best Model](#best-model-1)
-      - [Saving Model](#saving-model)
+      - [Save and Register Model](#save-and-register-model)
     + [Comparison of the two models](#comparison-of-the-two-models)
-    
       - [Services cleanup](#services-cleanup)
-    + [Standout Suggestions](#standout-suggestions)
-      - [Convert model into ONNX format](#convert-model-into-onnx-format)
-      - [Deploy model using IoT Edge](#deploy-model-using-iot-edge)
-      - [Enable Logging](#enable-logging)
-      - [Publish and Consume Pipeline](#publish-and-consume-pipeline)
   * [Future Improvements](#future-improvements)
   * [Screen Recording](#screen-recording)
 
@@ -110,6 +103,9 @@ After the experiment finished running we got different trained models, each one 
 ![automl](./Shortcat/Capture17.PNG)
 ![automl](./Shortcat/Capture18.PNG)
 
+#### Saving Model
+Once I got the best model of the Atoml-pipline experiment, I saved the model in the pickle format. Also I tested the model using the test dataset in order to compare with the next model.
+
 ### Model Deployment
 
 #### Register Model 
@@ -140,39 +136,41 @@ We can consume the model endpoint using the HTTP API. First we have to specify t
 
 ### Hyperdrive Model
 
-#### Pipeline
-Similar to the previous experiment, I built a Pipeline with steps such as cleaning data, filtering, do some transformations and split the dataset into train and test sets in order to do some feature engineering and help to get better models. The diffence is on the last module, which in this case is the HyperDrive step.
-
 #### HyperDrive config
-In order to run a HyperDrive experiment we have to set up some previous details. First I passed the output of the previous step (testTrainSplitStep) as input to the HyperDrive step. When reuse is allowed, results from the previous run are immediately sent to the next step. This is key when using pipelines in a collaborative environment since eliminating unnecessary reruns offers agility. Then we have to choose an algorithm to find the best hyperparameters of it. In this case I chose the LightGBM, which is a gradient boosting algorithm that uses tree-based learning. The advantages of LightGBM are that it has faster training speed and higher efficiency, lower memory usage, better accuracy and capable of handling large-scale data. So then we have to specify the LightGBM's hyperparameters to be tunned, in this case I chose the following parameters: num_leaves, max_depth, min_data_in_leaf and learning_rate. For num_leaves, max_depth and mindatain_leaf hyperparameters I defined a range of discrete values, whereas for the learning_rate hyperparameter I defined a uniform distribution of values. Then I defined the parameter space using random sampling. One of the the benefits of the random sampling is that the hyperparameter values are chosen from a set of discrete values or a distribution over a continuous range. So it tested several cases and not every combinations. It helped to reduce the time of hyperparameter tuning. Then I used the BanditPolicy as early stopping policy because it defines an early termination policy based on slack criteria, frequency and delay interval for evaluation. Any run that doesn't fall within the slack factor or slack amount of the evaluation metric with respect to the best performing run will be terminated. Then I built an estimator that specifies the location of the script, sets up its fixed parameters, including the compute target and specifies the packages needed to run the script.
+In order to run a HyperDrive experiment we have to set up some previous details. First I passed the output of the previous step (heart_training.py) as input to the HyperDrive step. When reuse is allowed, results from the previous run are immediately sent to the next step. This is key when using pipelines in a collaborative environment since eliminating unnecessary reruns offers agility and save the script in experiment_folder('hyperdrive).
+There are many machine learning algorithms that require hyperparameters (parameter values that influence training, but can't be determined from the training data itself). For example, when training a logistic regression model, you can use a regularization rate hyperparameter to counteract bias in the model; or when training a convolutional neural network, you can use hyperparameters like learning rate and batch size to control how weights are adjusted and how many data items are processed in a mini-batch respectively. The choice of hyperparameter values can significantly affect the performance of a trained model, or the time taken to train it; and often you need to try multiple combinations to find the optimal solution. 
+In this case, you'll use a simple example of a logistic regression model with a three hyperparameter, but the principles apply to any kind of model you can train with Azure Machine Learning.
+Azure Machine Learning includes a hyperparameter tuning capability through Hyperdrive experiments. These experiments launch multiple child runs, each with a different hyperparameter combination. The run producing the best model (as determined by the logged target performance metric for which you want to optimize) can be identified, and its trained model selected for registration and deployment.
 
-![hyperdrive](/image/img026.jpg)
-
-Then I created the HyperDrive step using the hyperdrive_config and then I submitted the experiment.
-
-![hyperdrive](/image/img020.jpg)
-![hyperdrive](/image/img022.jpg)
+![hyperdrive](./Shortcat/Capture10.PNG)
 
 #### RunDetails
 I used the RunDetails tool in order to get some information about the HyperDrive experiment. We can see a graphic of the AUC metric versus the runs and also the map of the hyperparameters.
 
-![hyperdrive](/image/img024.jpg)
+![hyperdrive](./Shortcat/Capture11.PNG)
+![hyperdrive](./Shortcat/Capture9h.PNG)
 
 #### Best Model
-Once the HyperDrive experiment finished running we got different trained models, each one with its AUC metric and its hyperparameters. The best model was a LightGBM algorithm with AUC=0.8029 with the following hyperparameters: learning_rate=0.016, max_depth=6, min_data_in_leaf=32 and num_leaves=16.
+Once the HyperDrive experiment finished running we got different trained models, each one with its AUC metric and its hyperparameters. The best model was a LightGBM algorithm with Best Run Id:  HD_93501b78-a2ca-4df3-9184-1a1ba57dd388_0
+ -AUC: 0.8237327188940091
+ -Accuracy: 0.8222222222222222
+ -Regularization Rate: ['--C', '0.9939177083701627', '--max_iter', '150', '--regularization', '0.05'] .
 
-![hyperdrive](/image/img027.jpg)
+![hyperdrive](./Shortcat/Capture9h.PNG)
+![hyperdrive](./Shortcat/Captureh3.PNG)
 
 We can see the best model in the Azure ML Studio with its metrics and hyperparameters obtained.
 
-![hyperdrive](/image/img058.jpg)
+![hyperdrive](./Shortcat/Capture9h.PNG)
 
 
 #### Save and Register Model
 Once I got the best model of the AutoML experiment, I saved the model in the pickle format. Also I tested the model using the test dataset in order to compare with other models. Then I registered the model using the register_model method from the AutoML run.
+![hyperdrive](./Shortcat/Capturehdsave.PNG)
+![hyperdrive](./Shortcat/Captureh2.PNG)
+![hyperdrive](./Shortcat/Captureh4.PNG)
+![hyperdrive](./Shortcat/CaptureHmodel.PNG)
 
-#### Saving Model
-Once I got the best model of the HyperDrive experiment, I saved the model in the pickle format. Also I tested the model using the test dataset in order to compare with the previous model.
 
 ### Comparison of the two models
 For both experiments I used the AUC metric in order to compare them. We've seen the AUC in the validation set for the AutoML model was 0.8021, whereas for the Hyperdrive model was 0.8029. In addition I calculated the AUC in the test set, for the AutoML was 0.7317 and for the Hyperdrive model was 0.7978. So we can see that the HyperDrive model is the best one between the two models. One reason to explain this is that the HyperDrive experiment focus on just one type of algorithm and try to find the best hyperparameters, in this case is the LightGBM which is an ensamble algorithm, whereas the AutoML tried differents algorithm, some of them basic algorithm like LogisticRegression. So now, we can deploy the best model.
@@ -181,55 +179,20 @@ For both experiments I used the AUC metric in order to compare them. We've seen 
 ![comparison](/image/img028.jpg)
 
 
-
 #### Services cleanup
 After all the steps, we can delete the ACI service and also we can delete the Compute cluster from its associated workspace in order to clean up services.
 
 ![deployment](/image/img052.jpg)
 
-### Standout Suggestions
-
-#### Convert model into ONNX format
-The Open Neural Network Exchange (ONNX) is an open-sources portability platform for models that allows you to convert models from one framework to another, or even to deploy models to a device (such as an iOS or Android mobile device). I converted the best model into ONNX format usin the onnxtool.
-
-![standout](/image/img044.jpg)
-![standout](/image/img045.jpg)
-
-#### Deploy model using IoT Edge
-We can also deploy a model using the Azure IoT Edge. First I had to create an IoTHub service and an IoT Edge device. Then I created the iot scoring file, similar to the scoring file, and also I created the environment file. Then I created a docker image with the previous information. I created a deployment.json file that contains the modules to deploy to the device and the routes. Then I pushed this file to the IoT Hub, which will then send it to the IoT Edge device. The IoT Edge agent will then pull the Docker image and run it. So in this way the model is deployed in the iot edge device.
-
-![iotedge](/image/img047.jpg)
-![iotedge](/image/img048.jpg)
-![iotedge](/image/img049.jpg)
-
-#### Enable Logging
-When we deploy a model, the Application Insights service is not enable by default. So we can execute a couple of lines of code to enable it. After executed it we can see now the Application Insights is enabled and we can retrieve logs.
-
-![logging](/image/img038.jpg)
-
-In the Application Insights page we can see some information about the endpoint such as the server response time, the total server requets, the numer of failed requests, etc.
-
-![logging](/image/img039.jpg)
-![logging](/image/img040.jpg)
-
-#### Publish and Consume Pipeline
-As further step, I published the pipeline of the best model using the publish_pipeline method. It generated the Pipeline endpoint, in this case called "Cardio Pipeline" and in the portal we can see the REST endpoint and its status which is Active. 
-
-![pipeline](/image/img050.jpg)
-
-Finally, I consumed the pipeline endpoint and the Pipeline started to run again.
-
-![pipeline](/image/img051.jpg)
-
 ## Future Improvements
-We can improve this project in the future trying several options. For example in the AutoML experiment we can extend the training job time for the experiment and also we can specify the models which can be used for Experiments under Blocked model. In the Hyperdrive experiment, we can test another algorithms like XGBoost in order to get the best hyperparameters. Also we can add more steps for the pipeline, for example a step to do standarization and normalization of the variables. Finally I would recommend get an explanation of the model in order to explain the most important variables and also we can use the Fairness SDK to make an analysis if the model is getting bias for a certain variable like gender for example.
-
-
-
- At the end we can also do some Standout Suggestions such as convert the model into ONNX format and deploy the model using IoT Edge in order to demonstrate all the knowledge from this Nanodegree.
+-  I built a HyperDrive step Pipeline with steps such as cleaning data, filtering, do some transformations and split the dataset into train and test sets in order to do some feature engineering and help to get better models. 
+-Feature engineering can be performed
+- Different feature reduction techniques could be used like PCA, RFE
+- Using Cross validation techniques would help in cribbing problems like overfitting
+- Th model can be converted to ONXX format and be deployed on Edge services.
 
 
 ## Screen Recording
 Finally I recorded a screencast that shows the entire process of the Capstone Project.
 
-[![Screencast](https://img.youtube.com/vi/oQ2xcY-wr-w/0.jpg)](https://youtu.be/oQ2xcY-wr-w)
+[![Screencast](https://drive.google.com/file/d/1auJXAn2Ptf3zimwOi9bc2BUuWtngAc45/view?usp=sharing)
