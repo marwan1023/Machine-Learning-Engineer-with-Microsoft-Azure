@@ -50,6 +50,7 @@ https://archive.ics.uci.edu/ml/machine-learning-databases/00519/heart_failure_cl
 
 ## Architecture
 First we have to choose a Dataset from an external resource like Kaggle, UCI, etc and import the dataset into the Azure ML Workspace. Then we have to train differents model using Automated ML and in the other experiment we have to train a model using Hyperdrive. After that we have to compare the performance of both best models and choose the best one in order to deploy it. Once deployed we have to test the model endpoint.
+
 ![architecture](./Shortcat/capstone-diagram.png)
 ![architecture](./Shortcat/MLworkflow.png)
 
