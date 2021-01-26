@@ -105,6 +105,7 @@ Namespace: azureml.train.automl.automlconfig.AutoMLConfig
 
 Use the AutoMLConfig class to configure parameters for automated machine learning training. Automated machine learning iterates over many combinations of machine learning algorithms and hyperparameter settings. It then finds the best-fit model based on your chosen accuracy metric. Configuration allows for specifying:
 
+I n this model we have used Automated ML to train and tune a model to perform a classification task. The main goal of the classification models 
 
 - experiment_timeout_hours- which is set to 30 ,i.e, 18 minutes. experiment_timeout_hours is the maximum time in hours that all iterations combined can take before the experiment terminates
  - max_concurrent_iterations- is set to 5 and it represents the maximum number of iterations that would be executed in parallel. This value should be less than or equal to the maximum number of nodes as compute clusters support one interaction running per node.
