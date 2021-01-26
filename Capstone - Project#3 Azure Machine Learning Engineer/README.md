@@ -170,16 +170,16 @@ Once I got the best model of the AutoML experiment, I saved the model in the pic
 
 
 ### Comparison of the two models
-For both experiments I used the AUC metric in order to compare them. We've seen the AUC in the validation set for the AutoML model was 0.8021, whereas for the Hyperdrive model was 0.8029. In addition I calculated the AUC in the test set, for the AutoML was 0.7317 and for the Hyperdrive model was 0.7978. So we can see that the HyperDrive model is the best one between the two models. One reason to explain this is that the HyperDrive experiment focus on just one type of algorithm and try to find the best hyperparameters, in this case is the LightGBM which is an ensamble algorithm, whereas the AutoML tried differents algorithm, some of them basic algorithm like LogisticRegression. So now, we can deploy the best model.
+In both experiments, I used the accuracy scale and the American University in Cairo for comparison.
+- The HyperDrive experiment focuses on only one type of algorithm and tries to find the best hyperparameters.
+- The focus of AutoML differs from different algorithms until you get the best suitable algorithm for the data and produce the best model. Training we can publish the best model.
 
-![comparison](/image/img029.jpg)
-![comparison](/image/img028.jpg)
-
+![comparison](./Shortcat/Capturecompermodl.PNG)
 
 #### Services cleanup
 After all the steps, we can delete the ACI service and also we can delete the Compute cluster from its associated workspace in order to clean up services.
 
-![deployment](/image/img052.jpg)
+![deletcop](./Shortcat/Deletcluster.PNG)
 
 ## Future Improvements
 -  I built a HyperDrive step Pipeline with steps such as cleaning data, filtering, do some transformations and split the dataset into train and test sets in order to do some feature engineering and help to get better models. 
@@ -190,6 +190,5 @@ After all the steps, we can delete the ACI service and also we can delete the Co
 
 
 ## Screen Recording
-Finally I recorded a screencast that shows the entire process of the Capstone Project.
 
-[![Screencast](https://drive.google.com/file/d/1auJXAn2Ptf3zimwOi9bc2BUuWtngAc45/view?usp=sharing)
+Provide a link to a screen recording of the Capstone Project in action. [Link](https://drive.google.com/file/d/1auJXAn2Ptf3zimwOi9bc2BUuWtngAc45/view?usp=sharing)
