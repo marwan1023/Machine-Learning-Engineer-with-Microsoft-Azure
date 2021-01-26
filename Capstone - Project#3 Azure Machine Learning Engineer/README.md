@@ -28,6 +28,13 @@ Table of Contents
       - [Services cleanup](#services-cleanup)
   * [Future Improvements](#future-improvements)
   * [Screen Recording](#screen-recording)
+  
+  ##  This project is part of Udacity Capstone Project. It is performed using two models:
+
+- Automated ML
+
+- Hyperparameters are tuned using HyperDrive.
+
 
 ## Overview
 This is the Capstone Project of the Udacity Microsoft MLE Nanodegree. This project leverages Azure Machine Learning to help in the Heart Failure Prediction,
@@ -41,11 +48,6 @@ The dataset contains 299 training examples in a csv file.
 
  The link dawnload data from [kaggle](https://www.kaggle.com/andrewmvd/heart-failure-clinical-data) or   [archive.ics.uci.edu](https://archive.ics.uci.edu/ml/machine-learning-databases/00519/heart_failure_clinical_records_dataset.csv.)
 
-
-#### This project is part of Udacity Capstone Project. It is performed using two models:
-
-- Automated ML
-- Hyperparameters are tuned using HyperDrive.
 
 ## Architecture
 First we have to choose a Dataset from an external resource like Kaggle, UCI, etc and import the dataset into the Azure ML Workspace. Then we have to train differents model using Automated ML and in the other experiment we have to train a model using Hyperdrive. After that we have to compare the performance of both best models and choose the best one in order to deploy it. Once deployed we have to test the model endpoint.
@@ -228,4 +230,4 @@ After all the steps, we can delete the ACI service and also we can delete the Co
 
 ## Screen Recording
 
-Provide a link to a screen recording of the Capstone Project in action. [Link](https://drive.google.com/file/d/1auJXAn2Ptf3zimwOi9bc2BUuWtngAc45/view?usp=sharing)
+Provide a link to a screen recording of the Capstone Project in action. [Link](https://drive.google.com/file/d/1QJd59Cj0JKFcRlOFnqt-0edKbMP_-giF/view?usp=sharing)
