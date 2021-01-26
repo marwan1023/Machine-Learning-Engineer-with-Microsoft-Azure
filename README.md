@@ -1,20 +1,20 @@
 # Machine-Learning-Engineer-with-Microsoft-Azure
 
 
-## -PART 1
+## - PART 1
 
 Welcome to Machine Learning Engineer with Microsoft Azure
 
 Welcome to Udacity! We're excited to share more about your nanodegree and start this journey with you! In this course, you will learn more about the pre-requisites, structure of the program, and getting started!
 
-## -PART 2
+## - PART 2
 Using Azure Machine Learning
 
 Machine learning is a critical business operation for many organizations. Learn how to configure machine learning pipelines in Azure, identify use cases for Automated Machine Learning, and use the Azure ML SDK to design, create, and manage machine learning pipelines in Azure.
 
 Project: Optimizing an ML Pipeline in Azure [link](https://github.com/marwan1023/Machine-Learning-Engineer-with-Microsoft-Azure/tree/master/Project%231%20Optimizing-an-ML-Pipelin)
 
-## -PART 3
+## - PART 3
 
 Machine Learning Operations
 
@@ -22,7 +22,7 @@ This course covers a lot of the key concepts of operationalizing Machine Learnin
 
 Project: Project: Operationalizing Machine Learning [link](https://github.com/marwan1023/Machine-Learning-Engineer-with-Microsoft-Azure/tree/master/Project%232%20Operationalizing%20Machine%20Learning)
 
-## -PART 4 
+## - PART 4 
 
 Capstone - Azure Machine Learning Engineer
 
