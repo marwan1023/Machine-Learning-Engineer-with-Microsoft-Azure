@@ -115,14 +115,6 @@ In this model we have used Automated ML to train and tune a model to perform a c
 - training_data - I used all the data because the data contains 299 rows that do not need to be divided as a training and test group.
 - Explain model prediction by generating feature importance values for the entire model and/or individual datapoints.
 
-- Task type (classification, regression, forecasting) 
-- Number of algorithm iterations and maximum time per iteration 
-- Accuracy metric to optimize -
-- Algorithms to blacklist/whitelist 
-- Number of cross-validations 
-- Compute targets
-- Training data 
-
  ![automl](./Shortcat/CaptureA.PNG)
 
 Then I created the AutoML step and I summitted the experiment. It took like 34:07 in order to run all the steps of the pipeline.
