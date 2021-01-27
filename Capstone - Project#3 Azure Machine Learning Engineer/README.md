@@ -233,6 +233,9 @@ After all the steps, we can delete the ACI service and also we can delete the Co
 
 ## Screen Recording
 
-Provide a link to a screen recording of the Capstone Project in action. [Link](https://drive.google.com/file/d/1qtM8zfoJqRLEoU5M96Ot8S0wXlTIKJf0/view?usp=sharing) ->The Short Time 5 mintes
+Provide a link to a screen recording of the Capstone Project in action. [Link](https://drive.google.com/file/d/1qtM8zfoJqRLEoU5M96Ot8S0wXlTIKJf0/view?usp=sharing) -> 5 mintes
 
-Provide a link to a screen recording of the Capstone Project in action. [Link](https://drive.google.com/file/d/1auJXAn2Ptf3zimwOi9bc2BUuWtngAc45/view?usp=sharing)The long time 10 mintes
+Provide a link to a screen recording of the Capstone Project in action. [Link](https://drive.google.com/file/d/1auJXAn2Ptf3zimwOi9bc2BUuWtngAc45/view?usp=sharing) 10 mintes
+
+## Acknowledgement
+I would like to thank Udacity for the course work and Microsoft for providing this opportunity. I have used dataset from Kaggle and would like to thank them for providing it. Resources used to complete the project are Kaggle, Udacity course work, scikit learn documentation and microsoft azure documentation.
